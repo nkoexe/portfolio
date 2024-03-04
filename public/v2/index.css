@@ -1,0 +1,142 @@
+:root {
+    --title-font-size: 70pt;
+    --descr-font-size: 20pt;
+    --background-color: #1d1d1d;
+    --accent-color: #e21246;
+    --text-color: #e6e6e6;
+    --link-color: #ffffff;
+}
+
+
+@keyframes revealAnimation {
+    0% {
+        width: 0%;
+        left: 0;
+
+    }
+    40%, 60% {
+        width: 100%;
+        left: 0;
+
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background: var(--background-color);
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+    padding: 5px;
+}
+
+.reveal {
+    width: 0%;
+    height: inherit;
+    padding-bottom: 10%;
+    background: var(--accent-color);
+    position: absolute;
+    animation: revealAnimation 2s cubic-bezier(0.1, 0, 0, 1) .5s;
+}
+
+#descrbox .reveal {
+    animation-delay: .8s;
+}
+
+.text {
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: baseline;
+    position: relative;
+    user-select: text;
+}
+.text::selection {
+    background: var(--accent-color);
+}
+
+.unselectable {
+    user-select: none;
+}
+
+#introbox {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+#titlebox {
+    width: fit-content;
+    height: var(--title-font-size);
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20%;
+}
+
+#descrbox {
+    width: fit-content;
+    height: var(--descr-font-size);
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#title {
+    font-size: var(--title-font-size);
+}
+
+#descr {
+    font-size: var(--descr-font-size);
+}
+
+#line {
+    height: 60%;
+    width: 1px;
+    background-color: var(--text-color);
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transition: all 0.5s;
+}
+
+#aboutbox {
+    position: absolute;
+    top: 35%;
+    right: 10%;
+    width: 30%;
+}
+
+@media screen and (max-width: 900px) {
+    #introbox {
+        top: 15%;
+        left: 10%;
+    }
+
+    #aboutbox {
+        top: 60%;
+        left: 10%;
+        width: 80%;
+    }
+
+    #line {
+        height: 1px;
+        width: 80%;
+        top: 48%;
+        left: 10%;
+    }
+} 
