@@ -1,0 +1,50 @@
+body {
+    background: #202020;
+    user-select: none;
+}
+
+.text {
+    font-family: "Open Sans", sans-serif;
+    color: #ddd;
+    transition: all 0.2s linear;
+}
+
+.selectable {
+    user-select: text;
+}
+.selectable::selection {
+    background: #5c97b9;
+}
+
+.link {
+    color: #89c5e7;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.link:hover {
+    color: #b6e6ee;
+}
+
+.separator {
+    padding: 5px;
+}
+
+#content {
+    margin-top: 25vh;
+    text-align: center;
+}
+
+#name {
+    font-size: max(min(12vw, 15vh), 100px);
+}
+
+#descr {
+    font-size: max(min(1.5vw, 1.8vh), 15px);
+    margin-top: 20px;
+}
+
+#about {
+    font-size: max(min(1.8vw, 2vh), 18px);
+    margin-top: 15vh;
+}
