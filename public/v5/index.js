@@ -23,12 +23,12 @@ function setTheme(dark) {
     if (dark) {
         document.body.dataset.theme = "dark";
         theme_icon.innerHTML = "dark_mode";
-        theme_icon.style.rotate = "360deg"
+        // theme_icon.style.rotate = "360deg"
     }
     else {
         document.body.dataset.theme = "light";
         theme_icon.innerHTML = "light_mode"
-        theme_icon.style.rotate = "180deg"
+        // theme1_icon.style.rotate = "180deg"
     }
 }
 
@@ -99,28 +99,33 @@ for (const element of navigation_buttons) {
     element.onclick = () => { console.log('to') }
 }
 
-main_contaienr.onwheel = (e) => {
-    current_page = pages[current_page_index]
-    if (e.deltaY > 0) {
-        if (current_page_index == 4) { return }
-        setTimeout(() => {
-            current_page.classList.remove("active")
-        }, 500);
-        current_page_index += 1
-        pages[current_page_index].classList.add("active")
-        console.log(current_page_index)
-        is_scrolling = true;
-    } else {
-        if (current_page_index == 0) { return }
-        current_page.classList.add("fadeout")
-        setTimeout(() => {
-            current_page.classList.remove("fadeout")
-        }, 500);
-        current_page.classList.remove("active")
-        current_page_index -= 1
-        pages[current_page_index].classList.add("active")
-        console.log(current_page_index)
-    }
+// main_contaienr.onwheel = (e) => {
+//     current_page = pages[current_page_index]
+//     if (e.deltaY > 0) {
+//         if (current_page_index == 4) { return }
+//         setTimeout(() => {
+//             current_page.classList.remove("active")
+//         }, 500);
+//         current_page_index += 1
+//         pages[current_page_index].classList.add("active")
+//         console.log(current_page_index)
+//         is_scrolling = true;
+//     } else {
+//         if (current_page_index == 0) { return }
+//         current_page.classList.add("fadeout")
+//         setTimeout(() => {
+//             current_page.classList.remove("fadeout")
+//         }, 500);
+//         current_page.classList.remove("active")
+//         current_page_index -= 1
+//         pages[current_page_index].classList.add("active")
+//         console.log(current_page_index)
+//     }
 
-    // main_contaienr.scrollTo(0, 0);
-}
+//     // main_contaienr.scrollTo(0, 0);
+// }
+
+// REVEAL EFFECTS
+const observer = new IntersectionObserver((elements) => {
+
+})

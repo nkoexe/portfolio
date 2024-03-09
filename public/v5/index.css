@@ -3,11 +3,12 @@ body[data-theme="light"] {
     --icon-color: #142819;
     --title-color: #142819;
     --text-color: #142819;
+    --footer-color: #142819;
     --pointer-color: #142819;
+    --scrollbar-color: #142819;
 
     #pointer {
         mix-blend-mode: normal;
-
     }
 }
 
@@ -18,6 +19,7 @@ body[data-theme="dark"] {
     --text-color: #c7dcab;
     --footer-color: #c7dcab;
     --pointer-color: #c7dcab;
+    --scrollbar-color: #c7dcab;
 }
 
 * {
@@ -28,7 +30,20 @@ body[data-theme="dark"] {
     box-sizing: border-box;
     font-family: 'Clash Display', sans-serif;
     cursor: none;
-    transition: background-color 1s cubic-bezier(.5, .1, 0, 1), color 1s cubic-bezier(.1, .2, 0, 1);
+    transition: background-color 1s cubic-bezier(.5, .1, 0, 1), color 1s cubic-bezier(.1, .2, 0, 1), border-color 1s cubic-bezier(.1, .2, 0, 1);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color);
+    border-radius: 3px;
 }
 
 .material-symbols-rounded {
@@ -113,7 +128,12 @@ header {
 
 #change_theme_button {
     width: 90px;
+    rotate: 180deg;
     transition: rotate 1s cubic-bezier(0, 1, 0, 1), color 0.3s;
+}
+
+body[data-theme="dark"] #change_theme_button {
+    rotate: 360deg;
 }
 
 #main_container {
@@ -122,7 +142,33 @@ header {
     overflow-y: auto;
 }
 
+@supports not selector(::-webkit-scrollbar) {
+    #main_container {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-color) var(--background-color);
+    }
+}
+
+#title_page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+/* 
 #page_container {
+    width: 100%;
+    height: 100%;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: var(--background-color);
+} */
+
+/* #page_container {
     width: 100%;
     height: 500%;
     display: flex;
@@ -158,7 +204,6 @@ header {
 }
 
 .page.fadeout {
-    /* background-color: red; */
     visibility: visible;
     animation: slidein 0.5s;
     animation-direction: reverse;
@@ -167,9 +212,9 @@ header {
 .page.fadeout::before {
     animation: slidein_before 0.5s;
     animation-direction: reverse;
-}
+} */
 
-
+/* 
 @keyframes slidein {
     0% {
         left: 100%;
@@ -189,28 +234,21 @@ header {
     100% {
         width: 0;
     }
-}
-
-
-
-.page p {
-    color: white;
-    text-align: center;
-}
+} */
 
 #title_container {
     margin: auto;
     padding: 50px;
     display: flex;
     color: var(--title-color);
-    font-size: 3em;
-    font-weight: 100;
-    transition: all 1s;
 }
 
 #title {
+    font-size: 3em;
+    font-weight: 100;
     margin: auto;
     position: relative;
+    /* transition: all 1s; */
 }
 
 #title_name,
@@ -269,8 +307,19 @@ header {
 
 }
 
-#bio_page {
-    color: white;
+#bio_container,
+#works_container,
+#contact_container,
+#info_container {
+    height: 100%;
+}
+
+.page_title {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 400;
+    letter-spacing: 0.2em;
 }
 
 footer {
@@ -278,6 +327,9 @@ footer {
     bottom: 0;
     width: 100%;
     display: flex;
+    border-top: 1px solid var(--footer-color);
+    backdrop-filter: blur(10px);
+    transition: inherit;
     z-index: 2;
 }
 
@@ -330,14 +382,18 @@ footer {
 
 #navigation_buttons_container {
     margin: auto;
+    display: flex;
 }
 
+.navigation_button_container {
+    position: relative;
+}
 
 .navigation_button {
-    padding: 10px 30px;
+    padding: 10px 3vw;
     border: 2px solid transparent;
     border-radius: 2rem;
-    transition: border-color 0.2s;
+    /* transition: border-color 0.2s; */
     font-size: 0.9em;
     font-weight: 500;
 }
@@ -345,9 +401,26 @@ footer {
 .navigation_button:hover {
     color: var(--background-color);
     /* border-color: var(--background-color); */
+    /* background-image:
+        linear-gradient(45deg, transparent 65%, red 80%, transparent 90%),
+        linear-gradient(135deg, transparent 5%, red 15%, transparent 25%),
+        linear-gradient(135deg, transparent 45%, red 55%, transparent 65%),
+        linear-gradient(45deg, transparent 25%, red 35%, transparent 50%);
+    background-repeat: repeat-x;
+    background-size: 16px 4px;
+    background-position: 0 95%; */
 }
 
-.navigation_compass_graphic {
+.navigation_button_underline {
+    width: 100px;
+}
+
+.navigation_button_underline path {
+    fill: transparent;
+    stroke: var(--footer-color);
+}
+
+/* .navigation_compass_graphic {
     --mask: linear-gradient(to right,
             rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 5%,
             rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%,
@@ -365,11 +438,10 @@ footer {
     -o-transform: scale(1, -1);
     -ms-transform: scale(1, -1);
     transform: scale(1, -1);
+} */
 
-}
 
-
-*/ @media (max-width: 600px) {
+@media (max-width: 600px) {
     * {
         cursor: unset;
     }
@@ -382,5 +454,19 @@ footer {
 
     #pointer:not(.hovering) {
         opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    * {
+        animation: none !important;
+        animation-duration: 0 !important;
+        transition: none !important;
+        transition-delay: 0 !important;
+    }
+
+    *:hover *,
+    *:hover {
+        font-weight: unset !important;
     }
 }
