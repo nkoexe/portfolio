@@ -386,10 +386,13 @@ footer {
 }
 
 .navigation_button_container {
-    position: relative;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
 }
 
 .navigation_button {
+    background-color: green;
     padding: 10px 3vw;
     border: 2px solid transparent;
     border-radius: 2rem;
@@ -411,13 +414,42 @@ footer {
     background-position: 0 95%; */
 }
 
-.navigation_button_underline {
-    width: 100px;
+#navigation_buttons_underline_container {
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    height: 10px;
+    overflow: hidden;
 }
 
-.navigation_button_underline path {
+#navigation_buttons_underline_window_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#navigation_buttons_underline_window {
+    position: absolute;
+    width: 50px;
+    translate: 10px 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#underline path {
     fill: transparent;
     stroke: var(--footer-color);
+    stroke-width: 0.5em;
+}
+
+#underline {
+    position: absolute;
+    background-color: red;
+    height: 100%;
+}
+
+.navigation_button:hover #underline {
+    margin-left: -10px;
 }
 
 /* .navigation_compass_graphic {
