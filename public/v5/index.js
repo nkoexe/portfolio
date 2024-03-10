@@ -38,9 +38,7 @@ if (window.matchMedia) {
         setTheme(matches);
     }
     // initial theme check
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme(true);
-    }
+    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
 }
 
 // header button
