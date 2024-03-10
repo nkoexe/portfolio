@@ -151,8 +151,7 @@ body[data-theme="dark"] #change_theme_button {
 
 #title_page {
     width: 100%;
-    /* height: 100%; */
-    padding: 20% 0;
+    height: 90%;
     display: flex;
 }
 
@@ -445,25 +444,22 @@ footer {
 #navigation_buttons_underline_window {
     position: absolute;
     width: 50px;
-    translate: 10px 0;
     height: 100%;
     overflow: hidden;
+    transition: all 1s;
+}
+
+#underline {
+    position: absolute;
+    background-color: red;
+    transition: all 1s;
+    height: 100%;
 }
 
 #underline path {
     fill: transparent;
     stroke: var(--footer-color);
     stroke-width: 0.5em;
-}
-
-#underline {
-    position: absolute;
-    background-color: red;
-    height: 100%;
-}
-
-.navigation_button:hover #underline {
-    margin-left: -10px;
 }
 
 /* .navigation_compass_graphic {

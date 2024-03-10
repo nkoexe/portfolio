@@ -2,9 +2,12 @@ const theme_icon = document.querySelector("#change_theme_button");
 const main_contaienr = document.querySelector("#main_container");
 const title_element = document.querySelector("#title_container")
 const title_letters = document.querySelectorAll(".title_letter");
-const pages = document.querySelectorAll(".page")
+const pages = document.querySelectorAll(".page");
 let current_page_index = 0;
+const navigation_container = document.querySelector("#navigation_container");
 const navigation_buttons = document.querySelectorAll(".navigation_button");
+const squiggle = document.querySelector("#navigation_buttons_underline_window");
+const squiggle_svg = document.querySelector("#underline");
 const pointer = document.querySelector("#pointer");
 
 let mouseX = 0;
@@ -82,7 +85,7 @@ document.onmousemove = (e) => {
     } else if (pointerHovering) {
         // exit hovering state
         hoveredElement = null;
-        pointer.classList.remove("hovering")
+        pointer.classList.remove("hovering");
         pointerWidth = pointerHeight = 10;
         pointerHovering = false;
     } else {
@@ -93,8 +96,20 @@ document.onmousemove = (e) => {
 }
 
 // NAVIGATION
-for (const element of navigation_buttons) {
-    element.onclick = () => { console.log('to') }
+for (let i = 0; i < navigation_buttons.length; i++) {
+    navigation_buttons[i].onclick = () => {
+        setMenuHighlight(i);
+    }
+}
+
+function setMenuHighlight(index) {
+    const rect = navigation_buttons[index].getBoundingClientRect()
+
+    const left = rect.left - navigation_container.getBoundingClientRect().left;
+
+    squiggle.style.width = `${rect.width}px`;
+    squiggle.style.left = `${left}px`;
+    squiggle_svg.style.left = `-${left}px`;
 }
 
 // main_contaienr.onwheel = (e) => {
