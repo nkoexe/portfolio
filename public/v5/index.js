@@ -49,6 +49,18 @@ document.querySelector("#change_theme_button").onclick = () => {
     setTheme(document.body.dataset.theme == "light");
 }
 
+// LANGUAGE
+function setLang(language) {
+    const tranlate_elements = document.querySelectorAll(`[data-${language}]`);
+    tranlate_elements.forEach(element => {
+        element.innerHTML = element.getAttribute(`data-${language}`);
+    })
+}
+
+document.querySelector("#button_language_en").onclick = () => { setLang('en') }
+document.querySelector("#button_language_de").onclick = () => { setLang('de') }
+document.querySelector("#button_language_it").onclick = () => { setLang('it') }
+
 
 // TITLE ANIMATION ON HOVER
 for (let i = 0; i < title_letters.length; i++) {
