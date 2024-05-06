@@ -1,0 +1,197 @@
+:root {
+  --color-background1: #141414;
+  --color-background2: #d44d5c;
+  --color-text: #f7ebe8;
+  --font-family: "Source Sans Pro", sans-serif;
+  --title-font-size: max(50px, 5vw);
+  --descr-font-size: max(20px, 1.7vw);
+  --darkmode-anim-duration: 0.45s;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background1);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  user-select: none;
+  transition: var(--darkmode-anim-duration);
+  overflow-x: hidden;
+}
+
+/* ~~~~~~~ SECTION 1 ~~~~~~~ */
+#s1 {
+  height: 100vh;
+  width: 100vw;
+}
+
+#title {
+  position: relative;
+  width: 0px;
+  top: 35%;
+  left: 10%;
+  font-size: var(--title-font-size);
+  font-weight: 600;
+  background-color: var(--color-text);
+  transition: background-color var(--darkmode-anim-duration);
+  animation: title-animation 3s;
+}
+
+/* First block (left of N) */
+#title_inner {
+  position: relative;
+  top: calc(var(--title-font-size) * -0.33);
+  left: calc(var(--title-font-size) * -0.09);
+  display: flex;
+  height: calc(var(--title-font-size) * 0.655);
+  animation: title-inner-animation 3s;
+}
+
+/* Second block (iccolo hidden at first) */
+#title_inner span:nth-child(2) {
+  color: var(--color-background1);
+  margin: 0px calc(var(--title-font-size) * -0.13);
+  /* spacing between text */
+  transition: color var(--darkmode-anim-duration);
+}
+
+#title_inner span:nth-child(2) div {
+  position: relative;
+  z-index: -2;
+  top: calc(var(--title-font-size) * -0.93);
+  left: calc(var(--title-font-size) * 0.04);
+  width: calc(var(--title-font-size) * 2.55);
+  height: calc(var(--title-font-size) * 0.655);
+  background-color: var(--color-text);
+  transition: background-color var(--darkmode-anim-duration);
+}
+
+#title_inner span:nth-child(3) {
+  animation: title-r-animation 3s;
+}
+
+#title_inner span:nth-child(3) div {
+  position: relative;
+  z-index: -1;
+  top: calc(var(--title-font-size) * -0.93);
+  left: calc(var(--title-font-size) * 0.15);
+  width: calc(var(--title-font-size) * 3.2);
+  height: 100%;
+  background-color: var(--color-background1);
+  transition: var(--darkmode-anim-duration);
+}
+
+@keyframes title-animation {
+
+  0%,
+  50% {
+    left: calc(var(--title-font-size) * -6);
+    width: 0;
+  }
+
+  50% {
+    left: 0;
+    width: 10vw;
+  }
+}
+
+@keyframes title-inner-animation {
+  0% {
+    padding-left: 0;
+  }
+
+  50% {
+    padding-left: 10vw;
+  }
+}
+
+@keyframes title-r-animation {
+
+  0%,
+  50% {
+    transform: translateX(calc(var(--title-font-size) * -2.55));
+    /* R initial position */
+  }
+}
+
+#descr {
+  position: absolute;
+  top: 44%;
+  left: 30%;
+  font-size: var(--descr-font-size);
+  animation: descr-animation 4s cubic-bezier(.1, .74, .62, 1);
+}
+
+@keyframes descr-animation {
+
+  0%,
+  75% {
+    opacity: 0;
+    left: 28%;
+  }
+}
+
+#darkmodebtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-background2);
+  color: var(--color-text);
+  font-size: 24px;
+  box-shadow: 0 0 15px 2px var(--color-background2);
+  transition: 0.3s;
+}
+
+#darkmodebtn:hover {
+  transform: rotate(45deg);
+}
+
+#downarrow {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: calc(var(--title-font-size) * 0.7);
+  height: calc(var(--title-font-size) * 0.7);
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-text);
+  animation: downarrow-animation 5s;
+}
+
+#downarrow span {
+  font-size: max(30px, 2vw);
+  transition: 0.3s;
+}
+
+#downarrow span:hover {
+  transform: rotate(45deg);
+}
+
+@keyframes downarrow-animation {
+
+  0%,
+  85% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+/* ~~~~~~~ SECTION 2 ~~~~~~~ */
+
+#s2 {
+  background-color: var(--color-background2);
+  width: 100vw;
+  height: 100vh;
+}
+
+#s2 p {
+  text-align: center;
+  line-height: 150%;
+  font-size: max(30px, 2.5vw);
+  margin: 0;
+  padding-top: 25vh;
+}
