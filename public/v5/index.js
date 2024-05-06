@@ -1,9 +1,7 @@
 const theme_icon = document.querySelector("#change_theme_button");
-const main_contaienr = document.querySelector("#main_container");
-const title_element = document.querySelector("#title_container")
 const title_letters = document.querySelectorAll(".title_letter");
-const pages = document.querySelectorAll(".page");
-let current_page_index = 0;
+
+let current_menu_index = 0;
 const navigation_container = document.querySelector("#navigation_container");
 const navigation_buttons = document.querySelectorAll(".navigation_button");
 const squiggle = document.querySelector("#navigation_buttons_underline_window");
@@ -56,6 +54,7 @@ function setLang(language) {
         element.innerHTML = element.getAttribute(`data-${language}`);
     })
 }
+setLang("en");
 
 document.querySelector("#button_language_en").onclick = () => { setLang('en') }
 document.querySelector("#button_language_de").onclick = () => { setLang('de') }
@@ -115,14 +114,39 @@ for (let i = 0; i < navigation_buttons.length; i++) {
 }
 
 function setMenuHighlight(index) {
+    current_menu_index = index
     const rect = navigation_buttons[index].getBoundingClientRect()
 
     const left = rect.left - navigation_container.getBoundingClientRect().left;
 
-    squiggle.style.width = `${rect.width}px`;
-    squiggle.style.left = `${left}px`;
+    squiggle.style.width = `${rect.width - 20}px`;
+    squiggle.style.left = `${left + 10}px`;
     squiggle_svg.style.left = `-${left}px`;
 }
+setMenuHighlight(0);
+
+const menu_observer = new IntersectionObserver((elements) => {
+    const intersecting_elements = elements.filter((e) => e.isIntersecting)
+
+    if (!intersecting_elements || intersecting_elements.length == 0) return;
+
+    switch (intersecting_elements[0].target.id) {
+        case "title":
+            setMenuHighlight(0);
+            break;
+        case "bio":
+            setMenuHighlight(1);
+            break;
+        case "works_container":
+            setMenuHighlight(2);
+            break;
+    }
+}, { rootMargin: "-10% 0px -30% 0px" })
+
+menu_observer.observe(document.querySelector("#title"))
+menu_observer.observe(document.querySelector("#bio"))
+menu_observer.observe(document.querySelector("#works_container"))
+
 
 // main_contaienr.onwheel = (e) => {
 //     current_page = pages[current_page_index]
@@ -151,6 +175,17 @@ function setMenuHighlight(index) {
 // }
 
 // REVEAL EFFECTS
-const observer = new IntersectionObserver((elements) => {
+const reveal_observer = new IntersectionObserver((elements) => {
+    elements.forEach(element => {
+        if (element.isIntersecting) {
+            element.target.classList.add("visible");
+        } else {
+            element.target.classList.remove("visible");
+        }
+    });
+}, { rootMargin: "0px 0px -200px 0px" });
 
-})
+reveal_observer.observe(document.querySelector("#bio"));
+reveal_observer.observe(document.querySelector("#works_container"));
+
+

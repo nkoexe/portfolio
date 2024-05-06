@@ -44,6 +44,14 @@ body[data-theme="dark"] {
 ::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-color);
     border-radius: 3px;
+    transition: background-color 1s;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    #main_container {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-color) var(--background-color);
+    }
 }
 
 .material-symbols-rounded {
@@ -142,99 +150,11 @@ body[data-theme="dark"] #change_theme_button {
     overflow-y: auto;
 }
 
-@supports not selector(::-webkit-scrollbar) {
-    #main_container {
-        scrollbar-width: thin;
-        scrollbar-color: var(--scrollbar-color) var(--background-color);
-    }
-}
-
 #title_page {
     width: 100%;
     height: 90%;
     display: flex;
 }
-
-/* 
-#page_container {
-    width: 100%;
-    height: 100%;
-}
-
-.page {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    background-color: var(--background-color);
-} */
-
-/* #page_container {
-    width: 100%;
-    height: 500%;
-    display: flex;
-    flex-direction: column;
-}
-
-.page {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-    display: flex;
-    position: fixed;
-    background-color: var(--background-color);
-}
-
-
-.page::before {
-    content: "";
-    width: 0;
-    height: 100%;
-    left: -30px;
-    background-color: var(--footer-color);
-}
-
-.page.active {
-    visibility: visible;
-    animation: slidein 0.5s;
-}
-
-.page.active::before {
-    animation: slidein_before 0.5s;
-}
-
-.page.fadeout {
-    visibility: visible;
-    animation: slidein 0.5s;
-    animation-direction: reverse;
-}
-
-.page.fadeout::before {
-    animation: slidein_before 0.5s;
-    animation-direction: reverse;
-} */
-
-/* 
-@keyframes slidein {
-    0% {
-        left: 100%;
-    }
-
-    100% {
-        left: 0;
-    }
-}
-
-@keyframes slidein_before {
-    0% {
-        width: 100px;
-        rotate: 15deg;
-    }
-
-    100% {
-        width: 0;
-    }
-} */
 
 #title_container {
     margin: auto;
@@ -281,7 +201,6 @@ body[data-theme="dark"] #change_theme_button {
     }
 }
 
-
 @keyframes title_background_initial_animation {
 
     0%,
@@ -307,11 +226,19 @@ body[data-theme="dark"] #change_theme_button {
 
 }
 
-#bio_container,
-#works_container,
-#contact_container,
-#info_container {
-    height: 100%;
+/* //////// */
+
+.reveal {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.reveal.visible {
+    opacity: 1;
+}
+
+#bio_container {
+    height: 70%;
 }
 
 #bio {
@@ -335,6 +262,26 @@ body[data-theme="dark"] #change_theme_button {
     letter-spacing: 0.2em;
 }
 
+
+#works_container {
+    height: 70%;
+}
+
+#works_container p,
+#works_container a {
+    margin-top: 2em;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 400;
+    word-spacing: 0.2em;
+    color: var(--text-color);
+}
+
+#works_container a {
+    padding: 10px 15px;
+}
+
+/* Footer menu */
 footer {
     position: fixed;
     bottom: 0;
@@ -345,48 +292,6 @@ footer {
     transition: inherit;
     z-index: 2;
 }
-
-/* #navigation_container {
-    position: relative;
-    margin: 20px auto;
-    border-radius: 2em;
-    background-color: var(--footer-color);
-    z-index: 3;
-}
-
-#navigation_buttons_container {}
-
-.navigation_button {
-    padding: 10px 30px;
-    border: 2px solid transparent;
-    border-radius: 2rem;
-    color: var(--background-color);
-    transition: border-color 0.2s;
-    font-size: 0.9em;
-    font-weight: 500;
-}
-
-.navigation_button.selected {
-    /* background-color: var(--background-color);
-    color: var(--footer-color);
-    mix-blend-mode: difference;
-} 
-
-#navigation_indicator_container {
-    position: absolute;
-    padding: 2px;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-#navigation_indicator {
-    width: 100px;
-    height: 100%;
-    border-radius: 2em;
-    background-color: var(--background-color);
-} 
-*/
 
 #navigation_container {
     position: relative;
@@ -399,13 +304,11 @@ footer {
 }
 
 .navigation_button_container {
-    background-color: blue;
     display: flex;
     flex-direction: column;
 }
 
 .navigation_button {
-    background-color: green;
     padding: 10px 3vw;
     border: 2px solid transparent;
     border-radius: 2rem;
@@ -416,20 +319,11 @@ footer {
 
 .navigation_button:hover {
     color: var(--background-color);
-    /* border-color: var(--background-color); */
-    /* background-image:
-        linear-gradient(45deg, transparent 65%, red 80%, transparent 90%),
-        linear-gradient(135deg, transparent 5%, red 15%, transparent 25%),
-        linear-gradient(135deg, transparent 45%, red 55%, transparent 65%),
-        linear-gradient(45deg, transparent 25%, red 35%, transparent 50%);
-    background-repeat: repeat-x;
-    background-size: 16px 4px;
-    background-position: 0 95%; */
 }
 
 #navigation_buttons_underline_container {
     position: absolute;
-    top: 25px;
+    top: 35px;
     width: 100%;
     height: 10px;
     overflow: hidden;
@@ -443,7 +337,8 @@ footer {
 
 #navigation_buttons_underline_window {
     position: absolute;
-    width: 50px;
+    mask: linear-gradient(to right, transparent, black, transparent);
+    width: 0;
     height: 100%;
     overflow: hidden;
     transition: all 1s;
@@ -451,7 +346,6 @@ footer {
 
 #underline {
     position: absolute;
-    background-color: red;
     transition: all 1s;
     height: 100%;
 }
@@ -460,28 +354,8 @@ footer {
     fill: transparent;
     stroke: var(--footer-color);
     stroke-width: 0.5em;
+    transition: stroke 1s;
 }
-
-/* .navigation_compass_graphic {
-    --mask: linear-gradient(to right,
-            rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 5%,
-            rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%,
-            rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
-    color: var(--footer-color);
-    text-align: center;
-    letter-spacing: 10px;
-    -webkit-mask: var(--mask);
-    mask: var(--mask);
-}
-
-.navigation_compass_graphic:last-child {
-    -moz-transform: scale(1, -1);
-    -webkit-transform: scale(1, -1);
-    -o-transform: scale(1, -1);
-    -ms-transform: scale(1, -1);
-    transform: scale(1, -1);
-} */
-
 
 @media (max-width: 600px) {
     * {
