@@ -23,13 +23,15 @@ let hoveredElement = null;
 function setTheme(dark) {
     if (dark) {
         document.body.dataset.theme = "dark";
-        theme_icon.innerHTML = "dark_mode";
-        // theme_icon.style.rotate = "360deg"
+        setTimeout(() => {
+            theme_icon.innerHTML = "dark_mode";
+        }, 100);
     }
     else {
         document.body.dataset.theme = "light";
-        theme_icon.innerHTML = "light_mode"
-        // theme1_icon.style.rotate = "180deg"
+        setTimeout(() => {
+            theme_icon.innerHTML = "light_mode"
+        }, 100);
     }
 }
 
@@ -43,7 +45,7 @@ if (window.matchMedia) {
 }
 
 // header button
-document.querySelector("#change_theme_button").onclick = () => {
+theme_icon.onclick = () => {
     setTheme(document.body.dataset.theme == "light");
 }
 
@@ -107,10 +109,17 @@ document.onmousemove = (e) => {
 }
 
 // NAVIGATION
-for (let i = 0; i < navigation_buttons.length; i++) {
-    navigation_buttons[i].onclick = () => {
-        setMenuHighlight(i);
-    }
+navigation_buttons[0].onclick = () => {
+    document.querySelector("#title_page").scrollIntoView({ behavior: "smooth" })
+    setMenuHighlight(0)
+}
+navigation_buttons[1].onclick = () => {
+    document.querySelector("#bio").scrollIntoView({ behavior: "smooth", block: "center" })
+    setMenuHighlight(1)
+}
+navigation_buttons[2].onclick = () => {
+    document.querySelector("#works_container").scrollIntoView({ behavior: "smooth", block: "center" })
+    setMenuHighlight(2)
 }
 
 function setMenuHighlight(index) {
@@ -141,11 +150,15 @@ const menu_observer = new IntersectionObserver((elements) => {
             setMenuHighlight(2);
             break;
     }
-}, { rootMargin: "-10% 0px -30% 0px" })
+}, { rootMargin: "-20% 0px -35% 0px" })
 
 menu_observer.observe(document.querySelector("#title"))
 menu_observer.observe(document.querySelector("#bio"))
 menu_observer.observe(document.querySelector("#works_container"))
+
+window.onresize = (e) => {
+    setMenuHighlight(current_menu_index)
+}
 
 
 // main_contaienr.onwheel = (e) => {

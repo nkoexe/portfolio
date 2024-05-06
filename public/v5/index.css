@@ -137,11 +137,16 @@ header {
 #change_theme_button {
     width: 90px;
     rotate: 180deg;
-    transition: rotate 1s cubic-bezier(0, 1, 0, 1), color 0.3s;
+    transition: rotate 1s cubic-bezier(0, 1, 0, 1), color 0.4s, opacity 0.5s;
 }
 
 body[data-theme="dark"] #change_theme_button {
     rotate: 360deg;
+}
+
+/* initial transition from empty to current theme */
+#change_theme_button:empty {
+    opacity: 0;
 }
 
 #main_container {
