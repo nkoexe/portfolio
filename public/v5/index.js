@@ -64,7 +64,7 @@ function animatePointer() {
 }
 animatePointer();
 
-// check for reveiving objects (buttons)
+// check for pointer receiving objects (buttons)
 document.onmousemove = (e) => {
     if (e.target.classList.contains("pointer_receiver")) {
         // new hover, or hovering different object
