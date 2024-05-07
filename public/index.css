@@ -485,4 +485,8 @@ footer {
     *:hover {
         font-weight: unset !important;
     }
+
+    .reveal {
+        opacity: 1;
+    }
 }
