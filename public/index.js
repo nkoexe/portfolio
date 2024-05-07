@@ -55,6 +55,28 @@ theme_icon.onclick = () => {
     setTheme(document.body.dataset.theme == "light");
 }
 
+// randomize colors
+document.querySelector("#randomize_colors_button").onclick = () => {
+    let luminosity
+    if (document.body.dataset.theme == "dark") {
+        luminosity = 10
+    } else {
+        luminosity = 90
+    }
+
+    const bg_saturation = Math.round(Math.random() * 20) + 10
+    const fg_saturation = Math.round(Math.random() * 50) + 30
+
+    const bg_hue = Math.round(Math.random() * 360)
+    const fg_hue = bg_hue + Math.round(Math.random() * 100) - 20
+
+    let bg = `hsl(${bg_hue}deg, ${bg_saturation}%, ${luminosity}%)`
+    let fg = `hsl(${fg_hue}deg, ${fg_saturation}%, ${(100 - luminosity)}%)`
+
+    document.body.style.setProperty("--background-color", bg)
+    document.body.style.setProperty("--text-color", fg)
+}
+
 // LANGUAGE
 function setLang(language) {
     const tranlate_elements = document.querySelectorAll(`[data-${language}]`);

@@ -325,6 +325,9 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 .info_content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     font-size: 1.3em;
     padding: 10px;
 }
@@ -370,6 +373,31 @@ body[data-theme="dark"] #change_theme_button {
 #color_tile_fg_text::selection {
     background-color: var(--background-color);
     color: var(--text-color);
+}
+
+#randomize_colors_container {
+    margin: auto 0 0 auto;
+}
+
+#randomize_colors_button {
+    margin-top: 10px;
+    border: 2px solid var(--text-color);
+    border-radius: 10px;
+    transition: border-radius 0.3s;
+}
+
+#randomize_colors_button .icon {
+    padding: 10px 20px;
+    user-select: none;
+    pointer-events: none;
+}
+
+#randomize_colors_button:hover {
+    border-radius: 15px;
+}
+
+#randomize_colors_button:hover .icon {
+    color: var(--background-color);
 }
 
 #ai_info {
