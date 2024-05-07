@@ -37,7 +37,6 @@ function setTheme(dark) {
     // todo: change text when switching theme
     // todo: user select
     const style = getComputedStyle(document.body)
-    console.log(style)
     document.querySelector("#color_tile_bg_text").innerHTML = style.getPropertyValue("--background-color")
     document.querySelector("#color_tile_fg_text").innerHTML = style.getPropertyValue("--text-color")
 }
@@ -123,6 +122,7 @@ function generate_menu_scroll_thresholds() {
         0,
         document.querySelector("#bio").getBoundingClientRect().top,
         document.querySelector("#works_container").getBoundingClientRect().top,
+        document.querySelector("#contact_container").getBoundingClientRect().top,
         document.querySelector("#info_container").getBoundingClientRect().top,
     ]
 }
@@ -146,17 +146,25 @@ window.onresize = (e) => {
 }
 
 window.onscroll = (e) => {
+    const currentY = document.documentElement.scrollTop + document.body.offsetHeight / 2
     for (let index = menu_scroll_thresholds.length - 1; index >= 0; index--) {
         // console.log("checking " + index + " (" + window.scrollY + " " + menu_scroll_thresholds[index] + ")")
-        if (window.scrollY + window.innerHeight / 2 > menu_scroll_thresholds[index]) {
+        if (currentY > menu_scroll_thresholds[index]) {
             setMenuHighlight(index)
             return
         }
     }
 }
 
+// for (let index = 1; index < navigation_buttons.length; index++) {
+//     navigation_buttons[index].onclick = () => {
+//         document.documentElement.scroll({ top: menu_scroll_thresholds[index] + document.body.offsetHeight / 2, behavior: "smooth" })
+//         setMenuHighlight(index)
+//     }
+// }
+
 navigation_buttons[0].onclick = () => {
-    document.querySelector("#title_page").scrollIntoView({ behavior: "smooth" })
+    document.documentElement.scroll({ top: 0, behavior: "smooth" })
     setMenuHighlight(0)
 }
 navigation_buttons[1].onclick = () => {
@@ -166,6 +174,10 @@ navigation_buttons[1].onclick = () => {
 navigation_buttons[2].onclick = () => {
     document.querySelector("#works_container").scrollIntoView({ behavior: "smooth" })
     setMenuHighlight(2)
+}
+navigation_buttons[3].onclick = () => {
+    document.querySelector("#contact_container").scrollIntoView({ behavior: "smooth" })
+    setMenuHighlight(3)
 }
 navigation_buttons[4].onclick = () => {
     document.querySelector("#info_container").scrollIntoView({ behavior: "smooth" })
