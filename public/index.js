@@ -33,6 +33,12 @@ function setTheme(dark) {
             theme_icon.innerHTML = "light_mode"
         }, 100);
     }
+
+    // todo: change text when switching theme
+    // todo: user select
+    const style = document.styleSheets[0].cssRules[0].style;
+    document.querySelector("#color_tile_bg_text").innerHTML = style.getPropertyValue("--background-color")
+    document.querySelector("#color_tile_fg_text").innerHTML = style.getPropertyValue("--text-color")
 }
 
 if (window.matchMedia) {
@@ -55,6 +61,7 @@ function setLang(language) {
     tranlate_elements.forEach(element => {
         element.innerHTML = element.getAttribute(`data-${language}`);
     })
+    setMenuHighlight(current_menu_index)
 }
 setLang("en");
 
@@ -118,7 +125,11 @@ navigation_buttons[1].onclick = () => {
     setMenuHighlight(1)
 }
 navigation_buttons[2].onclick = () => {
-    document.querySelector("#works_container").scrollIntoView({ behavior: "smooth", block: "center" })
+    document.querySelector("#works_container").scrollIntoView({ behavior: "smooth" })
+    setMenuHighlight(2)
+}
+navigation_buttons[4].onclick = () => {
+    document.querySelector("#info_container").scrollIntoView({ behavior: "smooth" })
     setMenuHighlight(2)
 }
 
@@ -149,12 +160,16 @@ const menu_observer = new IntersectionObserver((elements) => {
         case "works_container":
             setMenuHighlight(2);
             break;
+        case "info_container":
+            setMenuHighlight(4);
+            break;
     }
 }, { rootMargin: "-20% 0px -35% 0px" })
 
 menu_observer.observe(document.querySelector("#title"))
 menu_observer.observe(document.querySelector("#bio"))
 menu_observer.observe(document.querySelector("#works_container"))
+menu_observer.observe(document.querySelector("#info_container"))
 
 window.onresize = (e) => {
     setMenuHighlight(current_menu_index)
@@ -200,5 +215,6 @@ const reveal_observer = new IntersectionObserver((elements) => {
 
 reveal_observer.observe(document.querySelector("#bio"));
 reveal_observer.observe(document.querySelector("#works_container"));
+reveal_observer.observe(document.querySelector("#info_container"));
 
 
