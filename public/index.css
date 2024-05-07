@@ -303,22 +303,35 @@ body[data-theme="dark"] #change_theme_button {
 
 #infos {
     margin: 5% max(10%);
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 10px;
     color: var(--text-color);
     font-size: 1.3em;
     text-wrap: balance;
 }
 
-.info {
-    margin: 5% 0;
-    width: 40%;
+.info_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--text-color);
+    border-radius: 15px;
 }
 
-.info:nth-child(even) {
-    text-align: right;
-    margin: auto;
-    margin-right: 0;
+.info_container :nth-child(1) {
+    grid-row-end: 3;
+}
+
+.info_title {
+    border-bottom: 2px solid var(--text-color);
+    padding: 10px;
+    font-style: italic;
+}
+
+.info_content {
+    padding: 10px;
 }
 
 .color_container {
