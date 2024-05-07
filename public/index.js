@@ -36,7 +36,8 @@ function setTheme(dark) {
 
     // todo: change text when switching theme
     // todo: user select
-    const style = document.styleSheets[0].cssRules[0].style;
+    const style = getComputedStyle(document.body)
+    console.log(style)
     document.querySelector("#color_tile_bg_text").innerHTML = style.getPropertyValue("--background-color")
     document.querySelector("#color_tile_fg_text").innerHTML = style.getPropertyValue("--text-color")
 }
@@ -116,6 +117,44 @@ document.onmousemove = (e) => {
 }
 
 // NAVIGATION
+let menu_scroll_thresholds
+function generate_menu_scroll_thresholds() {
+    menu_scroll_thresholds = [
+        0,
+        document.querySelector("#bio").getBoundingClientRect().top,
+        document.querySelector("#works_container").getBoundingClientRect().top,
+        document.querySelector("#info_container").getBoundingClientRect().top,
+    ]
+}
+generate_menu_scroll_thresholds()
+
+function setMenuHighlight(index) {
+    current_menu_index = index
+    const rect = navigation_buttons[index].getBoundingClientRect()
+
+    const left = rect.left - navigation_container.getBoundingClientRect().left;
+
+    squiggle.style.width = `${rect.width - 20}px`;
+    squiggle.style.left = `${left + 10}px`;
+    squiggle_svg.style.left = `-${left}px`;
+}
+setMenuHighlight(0);
+
+window.onresize = (e) => {
+    generate_menu_scroll_thresholds()
+    setMenuHighlight(current_menu_index)
+}
+
+window.onscroll = (e) => {
+    for (let index = menu_scroll_thresholds.length - 1; index >= 0; index--) {
+        // console.log("checking " + index + " (" + window.scrollY + " " + menu_scroll_thresholds[index] + ")")
+        if (window.scrollY + window.innerHeight / 2 > menu_scroll_thresholds[index]) {
+            setMenuHighlight(index)
+            return
+        }
+    }
+}
+
 navigation_buttons[0].onclick = () => {
     document.querySelector("#title_page").scrollIntoView({ behavior: "smooth" })
     setMenuHighlight(0)
@@ -130,77 +169,9 @@ navigation_buttons[2].onclick = () => {
 }
 navigation_buttons[4].onclick = () => {
     document.querySelector("#info_container").scrollIntoView({ behavior: "smooth" })
-    setMenuHighlight(2)
+    setMenuHighlight(4)
 }
 
-function setMenuHighlight(index) {
-    current_menu_index = index
-    const rect = navigation_buttons[index].getBoundingClientRect()
-
-    const left = rect.left - navigation_container.getBoundingClientRect().left;
-
-    squiggle.style.width = `${rect.width - 20}px`;
-    squiggle.style.left = `${left + 10}px`;
-    squiggle_svg.style.left = `-${left}px`;
-}
-setMenuHighlight(0);
-
-const menu_observer = new IntersectionObserver((elements) => {
-    const intersecting_elements = elements.filter((e) => e.isIntersecting)
-
-    if (!intersecting_elements || intersecting_elements.length == 0) return;
-
-    switch (intersecting_elements[0].target.id) {
-        case "title":
-            setMenuHighlight(0);
-            break;
-        case "bio":
-            setMenuHighlight(1);
-            break;
-        case "works_container":
-            setMenuHighlight(2);
-            break;
-        case "info_container":
-            setMenuHighlight(4);
-            break;
-    }
-}, { rootMargin: "-20% 0px -35% 0px" })
-
-menu_observer.observe(document.querySelector("#title"))
-menu_observer.observe(document.querySelector("#bio"))
-menu_observer.observe(document.querySelector("#works_container"))
-menu_observer.observe(document.querySelector("#info_container"))
-
-window.onresize = (e) => {
-    setMenuHighlight(current_menu_index)
-}
-
-
-// main_contaienr.onwheel = (e) => {
-//     current_page = pages[current_page_index]
-//     if (e.deltaY > 0) {
-//         if (current_page_index == 4) { return }
-//         setTimeout(() => {
-//             current_page.classList.remove("active")
-//         }, 500);
-//         current_page_index += 1
-//         pages[current_page_index].classList.add("active")
-//         console.log(current_page_index)
-//         is_scrolling = true;
-//     } else {
-//         if (current_page_index == 0) { return }
-//         current_page.classList.add("fadeout")
-//         setTimeout(() => {
-//             current_page.classList.remove("fadeout")
-//         }, 500);
-//         current_page.classList.remove("active")
-//         current_page_index -= 1
-//         pages[current_page_index].classList.add("active")
-//         console.log(current_page_index)
-//     }
-
-//     // main_contaienr.scrollTo(0, 0);
-// }
 
 // REVEAL EFFECTS
 const reveal_observer = new IntersectionObserver((elements) => {
@@ -211,7 +182,7 @@ const reveal_observer = new IntersectionObserver((elements) => {
             element.target.classList.remove("visible");
         }
     });
-}, { rootMargin: "0px 0px -200px 0px" });
+}, { rootMargin: "-5% 0px -30% 0px" });
 
 reveal_observer.observe(document.querySelector("#bio"));
 reveal_observer.observe(document.querySelector("#works_container"));
