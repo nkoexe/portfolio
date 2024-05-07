@@ -1,11 +1,11 @@
 body[data-theme="light"] {
-    --background-color: #e3f8e0;
-    --icon-color: #142819;
-    --title-color: #142819;
-    --text-color: #142819;
-    --footer-color: #142819;
-    --pointer-color: #142819;
-    --scrollbar-color: #142819;
+    --background-color: #fffde4;
+    --text-color: #421709;
+    --icon-color: var(--text-color);
+    --title-color: var(--text-color);
+    --footer-color: var(--text-color);
+    --pointer-color: var(--text-color);
+    --scrollbar-color: var(--text-color);
 
     #pointer {
         mix-blend-mode: normal;
@@ -13,13 +13,13 @@ body[data-theme="light"] {
 }
 
 body[data-theme="dark"] {
-    --background-color: #262b25;
-    --icon-color: #c7dcab;
-    --title-color: #c7dcab;
-    --text-color: #c7dcab;
-    --footer-color: #c7dcab;
-    --pointer-color: #c7dcab;
-    --scrollbar-color: #c7dcab;
+    --background-color: #131411;
+    --text-color: #e4e1ac;
+    --icon-color: var(--text-color);
+    --title-color: var(--text-color);
+    --footer-color: var(--text-color);
+    --pointer-color: var(--text-color);
+    --scrollbar-color: var(--text-color);
 }
 
 * {
@@ -31,6 +31,11 @@ body[data-theme="dark"] {
     font-family: 'Clash Display', sans-serif;
     cursor: none;
     transition: background-color 1s cubic-bezier(.5, .1, 0, 1), color 1s cubic-bezier(.1, .2, 0, 1), border-color 1s cubic-bezier(.1, .2, 0, 1);
+}
+
+*::selection {
+    background-color: var(--text-color);
+    color: var(--background-color);
 }
 
 ::-webkit-scrollbar {
@@ -89,7 +94,6 @@ body {
     background-color: var(--background-color);
     display: flex;
     flex-direction: column;
-    user-select: none;
 }
 
 #pointer {
@@ -118,6 +122,7 @@ header {
     color: var(--icon-color);
     z-index: 5;
     pointer-events: none;
+    user-select: none;
 }
 
 #header_buttons_container {
@@ -185,6 +190,8 @@ body[data-theme="dark"] #change_theme_button {
 #title {
     font-size: 3em;
     font-weight: 100;
+    letter-spacing: 0.5rem;
+    word-spacing: 0.5rem;
     margin: auto;
     position: relative;
     /* transition: all 1s; */
@@ -360,6 +367,11 @@ body[data-theme="dark"] #change_theme_button {
     color: var(--background-color);
 }
 
+#color_tile_fg_text::selection {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
 #ai_info {
     padding: 5px;
     font-style: italic;
@@ -376,6 +388,7 @@ footer {
     backdrop-filter: blur(10px);
     transition: inherit;
     z-index: 15;
+    user-select: none;
 }
 
 #navigation_container {
