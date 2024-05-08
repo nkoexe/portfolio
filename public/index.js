@@ -34,11 +34,10 @@ function setTheme(dark) {
         }, 100);
     }
 
-    // todo: change text when switching theme
-    // todo: user select
-    const style = getComputedStyle(document.body)
-    document.querySelector("#color_tile_bg_text").innerHTML = style.getPropertyValue("--background-color")
-    document.querySelector("#color_tile_fg_text").innerHTML = style.getPropertyValue("--text-color")
+    const style = getComputedStyle(document.body);
+    document.querySelector("#color_tile_bg_code").innerHTML = style.getPropertyValue("--background-color");
+    document.querySelector("#color_tile_text_code").innerHTML = style.getPropertyValue("--text-color");
+    document.querySelector("#color_tile_accent_code").innerHTML = style.getPropertyValue("--icon-color");
 }
 
 if (window.matchMedia) {
@@ -57,24 +56,32 @@ theme_icon.onclick = () => {
 
 // randomize colors
 document.querySelector("#randomize_colors_button").onclick = () => {
-    let luminosity
+    let bg_luminosity, text_luminosity, icon_luminosity
     if (document.body.dataset.theme == "dark") {
-        luminosity = 10
+        bg_luminosity = 10
+        text_luminosity = 90
+        icon_luminosity = 80
     } else {
-        luminosity = 90
+        bg_luminosity = 95
+        text_luminosity = 10
+        icon_luminosity = 40
     }
 
-    const bg_saturation = Math.round(Math.random() * 20) + 10
-    const fg_saturation = Math.round(Math.random() * 50) + 30
+    const bg_saturation = Math.round(Math.random() * 20) + 5
+    const text_saturation = Math.round(Math.random() * 30) + 20
+    const icon_saturation = Math.round(Math.random() * 60) + 40
 
     const bg_hue = Math.round(Math.random() * 360)
-    const fg_hue = bg_hue + Math.round(Math.random() * 100) - 20
+    const text_hue = bg_hue + Math.round(Math.random() * 80) - 40
+    const icon_hue = bg_hue + Math.round(Math.random() * 100) - 50
 
-    let bg = `hsl(${bg_hue}deg, ${bg_saturation}%, ${luminosity}%)`
-    let fg = `hsl(${fg_hue}deg, ${fg_saturation}%, ${(100 - luminosity)}%)`
+    let bg = `hsl(${bg_hue}deg, ${bg_saturation}%, ${bg_luminosity}%)`
+    let text = `hsl(${text_hue}deg, ${text_saturation}%, ${(text_luminosity)}%)`
+    let icon = `hsl(${icon_hue}deg, ${icon_saturation}%, ${(icon_luminosity)}%)`
 
     document.body.style.setProperty("--background-color", bg)
-    document.body.style.setProperty("--text-color", fg)
+    document.body.style.setProperty("--text-color", text)
+    document.body.style.setProperty("--icon-color", icon)
 }
 
 // LANGUAGE
