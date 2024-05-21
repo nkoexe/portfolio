@@ -30,7 +30,7 @@ body[data-theme="dark"] {
     box-sizing: border-box;
     font-family: 'Clash Display', sans-serif;
     cursor: none;
-    transition: background-color 1s cubic-bezier(.5, .1, 0, 1), color 1s cubic-bezier(.1, .2, 0, 1), border-color 1s cubic-bezier(.1, .2, 0, 1);
+    transition: background-color 1s cubic-bezier(.5, .1, 0, 1), color 1s cubic-bezier(.1, .2, 0, 1), border-color 1s cubic-bezier(.1, .2, 0, 1), box-shadow 1s cubic-bezier(.1, .2, 0, 1), font-weight 0.5s, letter-spacing 0.5s;
 }
 
 *::selection {
@@ -253,11 +253,10 @@ body[data-theme="dark"] #change_theme_button {
         width: 0;
         right: -5%;
     }
-
 }
 
 #bio_container {
-    margin-bottom: 25%;
+    padding-bottom: 20%;
 }
 
 #bio {
@@ -283,7 +282,8 @@ body[data-theme="dark"] #change_theme_button {
 
 
 #works_container {
-    margin-bottom: 10%;
+    padding-top: 5%;
+    padding-bottom: 15%;
 }
 
 #works_container p {
@@ -296,14 +296,16 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 #contact_container {
-    margin-bottom: 15%;
+    padding-top: 5%;
+    padding-bottom: 20%;
 }
 
 #contacts {
     margin: auto;
+    padding-top: 5%;
     max-width: 500px;
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 30% 40% 30%;
     gap: 20px;
 }
 
@@ -313,7 +315,17 @@ body[data-theme="dark"] #change_theme_button {
     margin: 20px 20px;
     border: 1px solid var(--text-color);
     border-radius: 20px;
-    box-shadow: inset 0 0 10px 0 var(--text-color), inset 0 0 2px 0 var(--text-color), inset 0 -3px 5px 0 var(--text-color), 0 5px 20px 0 var(--text-color);
+    box-shadow: inset 0 0 20px 0 var(--text-color), inset 0 0 2px 0 var(--text-color), inset 0 -3px 10px 0 var(--text-color), 0 5px 15px 0 var(--text-color);
+}
+
+.contact:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.contact:nth-last-child(1) {
+    grid-column-start: 2;
+    grid-column-end: 4;
 }
 
 .contact a {
@@ -324,6 +336,11 @@ body[data-theme="dark"] #change_theme_button {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.contact a:hover {
+    font-weight: 600;
+    letter-spacing: 0.05em;
 }
 
 #email {
