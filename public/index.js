@@ -15,6 +15,7 @@ let pointerX = 0;
 let pointerY = 0;
 let pointerWidth = 10;
 let pointerHeight = 10;
+const pointerPadding = 20;
 let pointerHovering = false;
 let hoveredElement = null;
 
@@ -53,6 +54,11 @@ if (window.matchMedia) {
 theme_icon.onclick = () => {
     setTheme(document.body.dataset.theme == "light");
 }
+
+// Email
+const email = document.querySelector("#email")
+email.innerHTML = email.innerHTML.replace("[at]", "@")
+email.href = "mailto:" + email.innerHTML
 
 // randomize colors
 document.querySelector("#randomize_colors_button").onclick = () => {
@@ -126,8 +132,8 @@ document.onmousemove = (e) => {
             const target = e.target.getBoundingClientRect();
             mouseX = target.left + target.width / 2;
             mouseY = target.top + target.height / 2;
-            pointerWidth = target.width;
-            pointerHeight = target.height;
+            pointerWidth = target.width + pointerPadding;
+            pointerHeight = target.height + pointerPadding;
             pointerHovering = true;
         }
         // else already hovering, do nothing
@@ -227,6 +233,7 @@ const reveal_observer = new IntersectionObserver((elements) => {
 
 reveal_observer.observe(document.querySelector("#bio"));
 reveal_observer.observe(document.querySelector("#works_container"));
+reveal_observer.observe(document.querySelector("#contact_container"));
 reveal_observer.observe(document.querySelector("#info_container"));
 
 
