@@ -153,12 +153,13 @@ document.onmousemove = (e) => {
 // NAVIGATION
 let menu_scroll_thresholds
 function generate_menu_scroll_thresholds() {
+    const scroll_y = document.documentElement.scrollTop
     menu_scroll_thresholds = [
         0,
-        document.querySelector("#bio").getBoundingClientRect().top,
-        document.querySelector("#works_container").getBoundingClientRect().top,
-        document.querySelector("#contact_container").getBoundingClientRect().top,
-        document.querySelector("#info_container").getBoundingClientRect().top,
+        scroll_y + document.querySelector("#bio").getBoundingClientRect().top,
+        scroll_y + document.querySelector("#works_container").getBoundingClientRect().top,
+        scroll_y + document.querySelector("#contact_container").getBoundingClientRect().top,
+        scroll_y + document.querySelector("#info_container").getBoundingClientRect().top,
     ]
 }
 generate_menu_scroll_thresholds()
@@ -180,10 +181,14 @@ window.onresize = (e) => {
     setMenuHighlight(current_menu_index)
 }
 
+window.onfocus = (e) => {
+    generate_menu_scroll_thresholds()
+}
+
 window.onscroll = (e) => {
     const currentY = document.documentElement.scrollTop + document.body.offsetHeight / 2
     for (let index = menu_scroll_thresholds.length - 1; index >= 0; index--) {
-        // console.log("checking " + index + " (" + window.scrollY + " " + menu_scroll_thresholds[index] + ")")
+        console.log("checking " + index + " (" + currentY + " " + menu_scroll_thresholds[index] + ")")
         if (currentY > menu_scroll_thresholds[index]) {
             setMenuHighlight(index)
             return
