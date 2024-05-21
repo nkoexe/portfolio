@@ -188,7 +188,7 @@ window.onfocus = (e) => {
 window.onscroll = (e) => {
     const currentY = document.documentElement.scrollTop + document.body.offsetHeight / 2
     for (let index = menu_scroll_thresholds.length - 1; index >= 0; index--) {
-        console.log("checking " + index + " (" + currentY + " " + menu_scroll_thresholds[index] + ")")
+        // console.log("checking " + index + " (" + currentY + " " + menu_scroll_thresholds[index] + ")")
         if (currentY > menu_scroll_thresholds[index]) {
             setMenuHighlight(index)
             return
