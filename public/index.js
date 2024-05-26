@@ -8,11 +8,11 @@ const squiggle = document.querySelector("#navigation_buttons_underline_window");
 const squiggle_svg = document.querySelector("#underline");
 const pointer = document.querySelector("#pointer");
 
-let mouseX = 0;
-let mouseY = 0;
+let mouseX = document.body.clientWidth / 2;
+let mouseY = -10;
 const pointerSpeed = 0.8;
-let pointerX = 0;
-let pointerY = 0;
+let pointerX = mouseX;
+let pointerY = mouseY;
 let pointerWidth = 10;
 let pointerHeight = 10;
 const pointerPadding = 20;
@@ -20,48 +20,11 @@ let pointerHovering = false;
 let hoveredElement = null;
 
 
-// LIGHT&DARK THEME
-function setTheme(dark) {
-    if (dark) {
-        document.body.dataset.theme = "dark";
-        setTimeout(() => {
-            theme_icon.innerHTML = "dark_mode";
-        }, 100);
-    }
-    else {
-        document.body.dataset.theme = "light";
-        setTimeout(() => {
-            theme_icon.innerHTML = "light_mode"
-        }, 100);
-    }
+// RANDOMIZE COLORS
+const randomize_colors_button = document.querySelector("#randomize_colors_button")
+const randomize_colors_icon = document.querySelector("#randomize_colors_icon")
 
-    const style = getComputedStyle(document.body);
-    document.querySelector("#color_tile_bg_code").innerHTML = style.getPropertyValue("--background-color");
-    document.querySelector("#color_tile_text_code").innerHTML = style.getPropertyValue("--text-color");
-    document.querySelector("#color_tile_accent_code").innerHTML = style.getPropertyValue("--icon-color");
-}
-
-if (window.matchMedia) {
-    // watch for changes
-    window.matchMedia('(prefers-color-scheme: dark)').onchange = ({ matches }) => {
-        setTheme(matches);
-    }
-    // initial theme check
-    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
-}
-
-// header button
-theme_icon.onclick = () => {
-    setTheme(document.body.dataset.theme == "light");
-}
-
-// Email
-const email = document.querySelector("#email")
-email.innerHTML = email.innerHTML.replace("[at]", "@")
-email.href = "mailto:" + email.innerHTML
-
-// randomize colors
-document.querySelector("#randomize_colors_button").onclick = () => {
+function randomizeColors() {
     let bg_luminosity, text_luminosity, icon_luminosity
     if (document.body.dataset.theme == "dark") {
         bg_luminosity = 10
@@ -81,14 +44,80 @@ document.querySelector("#randomize_colors_button").onclick = () => {
     const text_hue = bg_hue + Math.round(Math.random() * 80) - 40
     const icon_hue = bg_hue + Math.round(Math.random() * 100) - 50
 
-    let bg = `hsl(${bg_hue}deg, ${bg_saturation}%, ${bg_luminosity}%)`
-    let text = `hsl(${text_hue}deg, ${text_saturation}%, ${(text_luminosity)}%)`
-    let icon = `hsl(${icon_hue}deg, ${icon_saturation}%, ${(icon_luminosity)}%)`
+    let bg = hslToHex(bg_hue, bg_saturation, bg_luminosity)
+    let text = hslToHex(text_hue, text_saturation, text_luminosity)
+    let icon = hslToHex(icon_hue, icon_saturation, icon_luminosity)
 
     document.body.style.setProperty("--background-color", bg)
     document.body.style.setProperty("--text-color", text)
     document.body.style.setProperty("--icon-color", icon)
+
+    randomize_colors_icon.style.animation = 'none';
+    randomize_colors_icon.offsetHeight; /* trigger reflow and restart animation */
+    randomize_colors_icon.style.animation = null;
+
+    updateColorTiles()
 }
+
+function updateColorTiles() {
+    const style = getComputedStyle(document.body);
+    document.querySelector("#color_tile_bg_code").innerHTML = style.getPropertyValue("--background-color");
+    document.querySelector("#color_tile_text_code").innerHTML = style.getPropertyValue("--text-color");
+    document.querySelector("#color_tile_accent_code").innerHTML = style.getPropertyValue("--icon-color");
+}
+
+function hslToHex(h, s, l) {
+    l /= 100;
+    const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - (s * Math.min(l, 1 - l) / 100) * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+randomize_colors_button.onclick = randomizeColors
+
+
+// LIGHT&DARK THEME
+function setTheme(dark) {
+    if (dark) {
+        document.body.dataset.theme = "dark";
+        setTimeout(() => {
+            theme_icon.innerHTML = "dark_mode";
+        }, 400);
+    }
+    else {
+        document.body.dataset.theme = "light";
+        setTimeout(() => {
+            theme_icon.innerHTML = "light_mode"
+        }, 400);
+    }
+
+    randomizeColors()
+}
+
+if (window.matchMedia) {
+    // watch for changes
+    window.matchMedia('(prefers-color-scheme: dark)').onchange = ({ matches }) => {
+        setTheme(matches);
+    }
+    // initial theme check
+    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+}
+
+// header button for changing theme
+theme_icon.onclick = () => {
+    // switch theme
+    setTheme(document.body.dataset.theme == "light");
+}
+
+
+// Email
+const email = document.querySelector("#email")
+email.innerHTML = email.innerHTML.replace("[at]", "@")
+email.href = "mailto:" + email.innerHTML
+
 
 // LANGUAGE
 function setLang(language) {
@@ -240,5 +269,3 @@ reveal_observer.observe(document.querySelector("#bio"));
 reveal_observer.observe(document.querySelector("#works_container"));
 reveal_observer.observe(document.querySelector("#contact_container"));
 reveal_observer.observe(document.querySelector("#info_container"));
-
-

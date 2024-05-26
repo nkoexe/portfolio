@@ -1,22 +1,32 @@
 body[data-theme="light"] {
-    --background-color: #fffde4;
+    /* --background-color: #fffde4;
     --text-color: #421709;
     --title-color: var(--text-color);
     --icon-color: #421709;
     --footer-color: var(--icon-color);
     --pointer-color: var(--icon-color);
-    --scrollbar-color: var(--icon-color);
+    --scrollbar-color: var(--icon-color); */
 
     #pointer {
         mix-blend-mode: normal;
     }
 }
 
-body[data-theme="dark"] {
+/* body[data-theme="dark"] {
     --background-color: #131411;
     --text-color: #e4e1ac;
     --title-color: var(--text-color);
     --icon-color: #e4e1ac;
+    --footer-color: var(--icon-color);
+    --pointer-color: var(--icon-color);
+    --scrollbar-color: var(--icon-color);
+} */
+
+body {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --title-color: var(--text-color);
+    --icon-color: #ffffff;
     --footer-color: var(--icon-color);
     --pointer-color: var(--icon-color);
     --scrollbar-color: var(--icon-color);
@@ -77,7 +87,7 @@ button {
 a {
     padding: 0.3em 0.5em;
     color: var(--text-color);
-    transition: color .5s cubic-bezier(.2, 0, 0, 1);
+    transition: color .3s cubic-bezier(0.1, 1, 0.5, 1);
 }
 
 a:hover {
@@ -160,7 +170,7 @@ header {
 #change_theme_button {
     width: 90px;
     rotate: 180deg;
-    transition: rotate 1s cubic-bezier(0, 1, 0, 1), color 0.4s, opacity 0.5s;
+    transition: rotate 1s cubic-bezier(0.78, 0.25, 0, 0.86), color 0.4s, opacity 0.5s;
 }
 
 body[data-theme="dark"] #change_theme_button {
@@ -452,18 +462,27 @@ body[data-theme="dark"] #change_theme_button {
     transition: border-radius 0.3s;
 }
 
-#randomize_colors_button .icon {
+@keyframes randomize_animation {
+    0% {
+        rotate: 180deg;
+    }
+
+    100% {
+        rotate: 0;
+    }
+}
+
+#randomize_colors_icon {
     padding: 10px 20px;
     user-select: none;
+    animation: randomize_animation 0.3s cubic-bezier(0, 0, 0, 1);
 }
 
 #randomize_colors_button:hover {
     border-radius: 15px;
-}
-
-#randomize_colors_button:hover .icon {
     color: var(--background-color);
 }
+
 
 #ai_info {
     padding: 5px;
@@ -503,7 +522,6 @@ footer {
     padding: 20px 3vw;
     border: 2px solid transparent;
     border-radius: 2rem;
-    /* transition: border-color 0.2s; */
     font-size: 0.9em;
     font-weight: 500;
     transition: color .5s cubic-bezier(.2, 0, 0, 1);
