@@ -87,7 +87,6 @@ button {
 a {
     padding: 0.3em 0.5em;
     color: var(--text-color);
-    transition: color .3s cubic-bezier(0.1, 1, 0.5, 1);
 }
 
 a:hover {
@@ -266,7 +265,7 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 #bio_container {
-    padding-bottom: 20%;
+    padding-bottom: 25%;
 }
 
 #bio {
@@ -287,13 +286,18 @@ body[data-theme="dark"] #change_theme_button {
     text-align: center;
     font-size: 2.5em;
     font-weight: 400;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
 }
 
 
 #works_container {
     padding-top: 5%;
-    padding-bottom: 15%;
+    padding-bottom: 25%;
+}
+
+/* temp */
+#works_container p:first-of-type {
+    margin-top: 5em;
 }
 
 #works_container p {
@@ -307,40 +311,33 @@ body[data-theme="dark"] #change_theme_button {
 
 #contact_container {
     padding-top: 5%;
-    padding-bottom: 20%;
+    padding-bottom: 25%;
 }
 
 #contacts {
     margin: auto;
     padding-top: 5%;
     max-width: 500px;
-    display: grid;
-    grid-template-columns: 30% 40% 30%;
-    gap: 20px;
+}
+
+.contact_row {
+    display: flex;
 }
 
 .contact {
-    width: 100%;
-    height: 100%;
-    margin: 20px 20px;
+    flex: 1;
+    margin: 15px 15px;
     border: 1px solid var(--text-color);
     border-radius: 20px;
     box-shadow: inset 0 0 20px 0 var(--text-color), inset 0 0 2px 0 var(--text-color), inset 0 -3px 10px 0 var(--text-color), 0 5px 15px 0 var(--text-color);
 }
 
-.contact:nth-child(1) {
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-
-.contact:nth-last-child(1) {
-    grid-column-start: 2;
-    grid-column-end: 4;
+.contact.wide {
+    flex: 2;
 }
 
 .contact a {
-    width: 100%;
-    height: 100%;
+    padding: 20px 0;
     font-size: 1.2em;
     text-decoration: none;
     display: flex;
