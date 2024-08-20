@@ -22,6 +22,13 @@ let pointerHovering = false;
 let hoveredElement = null;
 
 
+// skip header and footer animations
+if (document.documentElement.scrollTop > 0) {
+    document.querySelector("header").style.animationDelay = "0.2s";
+    document.querySelector("footer").style.animationDelay = "0.2s";
+}
+
+
 // RANDOMIZE COLORS
 const randomize_colors_button = document.querySelector("#randomize_colors_button")
 const randomize_colors_icon = document.querySelector("#randomize_colors_icon")

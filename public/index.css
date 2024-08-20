@@ -98,8 +98,8 @@ body {
 
 #pointer {
     position: fixed;
-    width: 10px;
-    height: 10px;
+    width: 0;
+    height: 0;
     translate: -50% -50%;
     border-radius: 2em;
     background-color: var(--pointer-color);
@@ -113,10 +113,22 @@ body {
     filter: blur(15px);
     -webkit-filter: blur(15px);
     z-index: 0;
+    transition: width 0.3s, height 0.2s;
 }
 
 .pointer_receiver * {
     pointer-events: none;
+}
+
+@keyframes slide_in_header {
+
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 header {
@@ -127,7 +139,10 @@ header {
     z-index: 5;
     pointer-events: none;
     user-select: none;
+    transform: translateY(-100%);
+    animation: slide_in_header .75s cubic-bezier(0, 1, .5, 1) 2.05s forwards;
 }
+
 
 #header_buttons_container {
     margin: auto;
@@ -492,6 +507,17 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 /* Footer menu */
+@keyframes slide_in_footer {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+
+}
+
 footer {
     position: fixed;
     bottom: 0;
@@ -502,6 +528,8 @@ footer {
     transition: inherit;
     z-index: 15;
     user-select: none;
+    transform: translateY(100%);
+    animation: slide_in_footer .75s cubic-bezier(0, 1, .5, 1) 2.05s forwards;
 }
 
 #navigation_container {
@@ -615,4 +643,8 @@ footer {
     .reveal {
         opacity: 1;
     }
+}
+
+#title_page:current {
+    background-color: red !important;
 }
