@@ -10,12 +10,12 @@
   <meta name="author" content="Niccolò Ragazzi">
   <meta name="keywords" content="Niccolò Ragazzi, Portfolio, Personal Portfolio, Personal Website, Student Portfolio">
   <link rel="stylesheet" href="index.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@1&display=swap">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
 </head>
 
-<body data-theme="dark">
+<body>
   <header>
     <div id="header_buttons_container">
       <div id="language_buttons_container">
@@ -24,7 +24,14 @@
         <button id="button_language_it" class="language_button header_button pointer_receiver">it</button>
       </div>
       <div id="change_theme_container">
-        <button id="change_theme_button" class="header_button pointer_receiver material-symbols-rounded"></button>
+        <button id="change_theme_button" class="header_button pointer_receiver material-symbols-rounded">
+          <svg id="icon_dark_mode" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+            <path d="M480.57-111.52q-157.22 0-263.14-105.63Q111.52-322.78 111.52-480q0-128.39 77.57-229.89 77.56-101.5 214.17-129.24 18.65-5.39 33.74-1.59 15.09 3.81 25.33 13.37 10.23 9.57 13.84 23.83 3.61 14.26-1 30.35-9.65 23.74-15.6 47.08-5.96 23.35-5.96 48 0 94.01 66.13 159.81t160.61 65.8q24.78 0 49.63-5.32 24.85-5.33 46.02-14.55 15.52-4.17 28.72-.85 13.19 3.33 21.93 11.72 9.7 8.39 13.5 22.63 3.81 14.24-1.02 33.33Q814.96-276 713.72-193.76q-101.24 82.24-233.15 82.24Zm0-106q73.3 0 133.97-37.2 60.68-37.19 93.24-98.8-14.35 2.74-28.41 4.04-14.07 1.31-27.85.18-120.74-9.61-205.82-93.29-85.09-83.67-95.83-208.93-.57-13.78.46-28.13 1.02-14.35 4.32-28.13-61.04 33.13-98.8 94.09-37.76 60.95-37.76 133.69 0 108.74 76.87 185.61 76.86 76.87 185.61 76.87Zm-17.35-245.13Z" />
+          </svg>
+          <svg id="icon_light_mode" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+            <path d="M480-386q39.26 0 66.63-27.37Q574-440.74 574-480q0-39.26-27.37-66.63Q519.26-574 480-574q-39.26 0-66.63 27.37Q386-519.26 386-480q0 39.26 27.37 66.63Q440.74-386 480-386Zm0 106q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM80-427q-22.09 0-37.54-15.46Q27-457.91 27-480t15.46-37.54Q57.91-533 80-533h80q22.09 0 37.54 15.46Q213-502.09 213-480t-15.46 37.54Q182.09-427 160-427H80Zm720 0q-22.09 0-37.54-15.46Q747-457.91 747-480t15.46-37.54Q777.91-533 800-533h80q22.09 0 37.54 15.46Q933-502.09 933-480t-15.46 37.54Q902.09-427 880-427h-80ZM480-747q-22.09 0-37.54-15.46Q427-777.91 427-800v-80q0-22.09 15.46-37.54Q457.91-933 480-933t37.54 15.46Q533-902.09 533-880v80q0 22.09-15.46 37.54Q502.09-747 480-747Zm0 720q-22.09 0-37.54-15.46Q427-57.91 427-80v-80q0-22.09 15.46-37.54Q457.91-213 480-213t37.54 15.46Q533-182.09 533-160v80q0 22.09-15.46 37.54Q502.09-27 480-27ZM216.96-668.39l-43-42Q158-725.35 158.5-747.43q.5-22.09 15.46-38.61Q189.35-802 211.43-802q22.09 0 37.61 15.96l42.57 43q14.96 15.39 14.67 36.76-.28 21.37-14.67 37.32-14.96 15.96-36.83 16.03-21.87.06-37.82-15.46Zm494 494.43-42.57-43q-14.96-15.39-14.96-36.97 0-21.59 14.96-37.11 14.96-15.96 36.83-15.46 21.87.5 37.82 15.46l43 41.43q15.96 14.96 15.46 37.04-.5 22.09-15.46 38.61Q770.65-158 748.57-158q-22.09 0-37.61-15.96Zm-42-494.43Q653-683.35 653.5-705.22q.5-21.87 15.46-37.82l41.43-43q14.96-15.96 37.04-15.46 22.09.5 38.61 15.46Q802-770.65 802-748.57q0 22.09-15.96 37.61l-43 42.57q-15.39 14.96-36.76 14.67-21.37-.28-37.32-14.67Zm-495 494.43Q158-189.35 158-211.43q0-22.09 15.96-37.61l43-42.57q15.39-14.96 36.97-14.96 21.59 0 37.11 14.96 15.96 14.96 15.46 36.83-.5 21.87-15.46 37.82l-41.43 43Q234.65-158 212.57-158.5q-22.09-.5-38.61-15.46ZM480-480Z" />
+          </svg>
+        </button>
       </div>
     </div>
   </header>
@@ -77,7 +84,7 @@
           </div>
         </div>
         <div class="info_container" id="colors_info_container">
-          <div class="info_title" data-en="Colors" data-de="Farben" data-it="Colori"></div>
+          <div class="info_title" data-en="Colors" data-de="Farben" data-it="Colori">Colors</div>
           <div class="info_content">
             <div class="color_container">
               <span data-en="Background" data-de="Hintergrund" data-it="Sfondo">Background</span>
@@ -92,7 +99,11 @@
               <div id="color_tile_accent" class="color_tile"><span id="color_tile_accent_code"></span></div>
             </div>
             <div id="randomize_colors_container">
-              <button id="randomize_colors_button" class="pointer_receiver"><span id="randomize_colors_icon" class="material-symbols-rounded">sync</span></button>
+              <button id="randomize_colors_button" class="pointer_receiver">
+                <div id="randomize_colors_icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M251.87-478q0 41.61 16.15 81.56 16.15 39.96 49.89 74.83l5.48 5.48v-39.91q0-18.7 12.91-31.33Q349.22-400 367.91-400q18.7 0 31.33 12.63 12.63 12.63 12.63 31.33v154.34q0 22.09-15.46 37.55-15.45 15.45-37.54 15.45H205.09q-18.7 0-31.33-12.91-12.63-12.91-12.63-31.61 0-18.69 12.91-31.32 12.92-12.63 31.61-12.63h46.83l-8.65-8.35q-52.57-49.39-75.27-110.09Q145.87-416.3 145.87-478q0-99.65 52.8-180.96 52.81-81.3 140.59-122.87 17.96-9.13 36 1.55 18.04 10.67 24.18 31.76 5.56 20.09-2.48 39.32-8.05 19.24-26.57 29.5-54.04 30.31-86.28 83.98-32.24 53.68-32.24 117.72Zm456.26-4q0-41.61-16.15-81.56-16.15-39.96-49.89-74.83l-5.48-5.48v39.91q0 18.7-12.63 31.33Q611.35-560 592.65-560q-18.69 0-31.61-12.91-12.91-12.92-12.91-31.61V-758.3q0-22.09 15.46-37.55 15.45-15.45 37.54-15.45h153.78q18.7 0 31.33 12.63 12.63 12.63 12.63 31.32 0 18.7-12.63 31.61t-31.33 12.91h-47.39l8.65 8.35q50.7 51.26 74.33 111.02Q814.13-543.7 814.13-482q0 99.65-52.8 180.96-52.81 81.3-140.59 122.87-17.96 9.13-36-1.55-18.04-10.67-24.18-31.76-5.56-20.09 2.48-39.32 8.05-19.24 26.57-29.5 54.04-30.31 86.28-83.98 32.24-53.68 32.24-117.72Z" />
+                  </svg></div>
+              </button>
             </div>
           </div>
         </div>
@@ -109,13 +120,13 @@
           <button class="navigation_button pointer_receiver">Home</button>
         </div>
         <div class="navigation_button_container">
-          <button class="navigation_button pointer_receiver" data-en="Biography" data-de="Biographie" data-it="Biografia"></button>
+          <button class="navigation_button pointer_receiver" data-en="Biography" data-de="Biographie" data-it="Biografia">Biography</button>
         </div>
         <div class="navigation_button_container">
-          <button class="navigation_button pointer_receiver" data-en="Works" data-de="Projekte" data-it="Progetti"></button>
+          <button class="navigation_button pointer_receiver" data-en="Works" data-de="Projekte" data-it="Progetti">Works</button>
         </div>
         <div class="navigation_button_container">
-          <button class="navigation_button pointer_receiver" data-en="Contact" data-de="Kontakt" data-it="Contatti"></button>
+          <button class="navigation_button pointer_receiver" data-en="Contact" data-de="Kontakt" data-it="Contatti">Contact</button>
         </div>
         <div class="navigation_button_container">
           <button class="navigation_button pointer_receiver">Info</button>
@@ -140,7 +151,7 @@
   </footer>
   <div id="pointer"></div>
 
-  <script src="index.js"></script>
+  <script src="index.js" async></script>
 </body>
 
 </html>

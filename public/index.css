@@ -69,18 +69,9 @@ body {
     }
 }
 
-.material-symbols-rounded {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
-}
-
 button {
     border: none;
     background-color: transparent;
-    /* background-color: red; */
     color: var(--icon-color);
 }
 
@@ -169,16 +160,21 @@ header {
 #change_theme_button {
     width: 90px;
     rotate: 180deg;
-    transition: rotate 1s cubic-bezier(0.78, 0.25, 0, 0.86), color 0.4s, opacity 0.5s;
+    transition: rotate 1s cubic-bezier(0.78, 0.25, 0, 0.86), opacity 0.5s;
 }
 
 body[data-theme="dark"] #change_theme_button {
     rotate: 360deg;
 }
 
-/* initial transition from empty to current theme */
-#change_theme_button:empty {
-    opacity: 0;
+#change_theme_button>svg {
+    vertical-align: bottom;
+    fill: var(--icon-color);
+    transition: fill 0.5s;
+}
+
+#change_theme_button:hover>svg {
+    fill: var(--background-color);
 }
 
 #main_container {
@@ -207,7 +203,6 @@ body[data-theme="dark"] #change_theme_button {
     word-spacing: 0.5rem;
     margin: auto;
     position: relative;
-    /* transition: all 1s; */
 }
 
 #title_name,
@@ -470,14 +465,23 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 #randomize_colors_icon {
-    padding: 10px 20px;
+    padding: 15px 30px;
     user-select: none;
     animation: randomize_animation 0.3s cubic-bezier(0, 0, 0, 1);
 }
 
+#randomize_colors_icon>svg {
+    fill: var(--icon-color);
+    vertical-align: bottom;
+    transition: fill 0.3s ease-out;
+}
+
 #randomize_colors_button:hover {
     border-radius: 15px;
-    color: var(--background-color);
+}
+
+#randomize_colors_button:hover svg {
+    fill: var(--background-color) !important;
 }
 
 
