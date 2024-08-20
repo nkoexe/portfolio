@@ -36,7 +36,7 @@ const randomize_colors_icon = document.querySelector("#randomize_colors_icon")
 function randomizeColors() {
     let bg_luminosity, bg_saturation, text_luminosity, icon_luminosity
     if (document.body.dataset.theme == "dark") {
-        bg_luminosity = 15
+        bg_luminosity = 10
         bg_saturation = 3
         text_luminosity = 90
         icon_luminosity = 80

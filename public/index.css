@@ -1,26 +1,8 @@
 body[data-theme="light"] {
-    /* --background-color: #fffde4;
-    --text-color: #421709;
-    --title-color: var(--text-color);
-    --icon-color: #421709;
-    --footer-color: var(--icon-color);
-    --pointer-color: var(--icon-color);
-    --scrollbar-color: var(--icon-color); */
-
     #pointer {
         mix-blend-mode: normal;
     }
 }
-
-/* body[data-theme="dark"] {
-    --background-color: #131411;
-    --text-color: #e4e1ac;
-    --title-color: var(--text-color);
-    --icon-color: #e4e1ac;
-    --footer-color: var(--icon-color);
-    --pointer-color: var(--icon-color);
-    --scrollbar-color: var(--icon-color);
-} */
 
 body {
     --background-color: #000000;
