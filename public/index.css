@@ -91,14 +91,14 @@ body {
     pointer-events: none;
     mix-blend-mode: difference;
     z-index: 10;
-    transition: width 0.4s cubic-bezier(.2, 0, 0, 1), height .3s cubic-bezier(.2, 0, 0, 1), filter .5s;
+    transition: width 0.4s cubic-bezier(.2, 0, 0, 1), height .3s cubic-bezier(.2, 0, 0, 1), filter .5s
 }
 
 #pointer.hovering {
     filter: blur(15px);
     -webkit-filter: blur(15px);
     z-index: 0;
-    transition: width .5s cubic-bezier(.1, .7, .1, 1), height .3s cubic-bezier(.4, .6, .1, 1), filter 0.4s, transform .6s cubic-bezier(.1, .7, .1, 1);
+    transition: width .5s cubic-bezier(.1, .7, .1, 1), height .3s cubic-bezier(.4, .6, .1, 1), filter 0.4s, transform .6s cubic-bezier(.1, .7, .1, 1), background-color .4s;
 }
 
 .pointer_receiver * {
@@ -212,7 +212,7 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 #title_container .title_letter {
-    transition: font-weight 0.25s;
+    transition: font-weight 0.4s;
     animation: title_initial_animation 2s linear;
 }
 
