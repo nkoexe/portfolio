@@ -374,6 +374,7 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
 }
 
 .project_readmore {
+    visibility: hidden; /* temp finchè non si crea il popover */
     position: absolute;
     bottom: 0;
     right: 0;
