@@ -10,7 +10,6 @@
   <meta name="author" content="Niccolò Ragazzi">
   <meta name="keywords" content="Niccolò Ragazzi, Portfolio, Personal Portfolio, Personal Website, Student Portfolio">
   <link rel="stylesheet" href="index.css" />
-  <!-- <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@1&display=swap"> -->
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 </head>
@@ -59,16 +58,18 @@
     </div>
     <div id="bio_container">
       <p id="bio" class="reveal">
-        <span data-en="Hey. I am high school" data-de="Hey. Ich bin ein" data-it="Hey. Sono uno"></span>
-        <span data-en="student" data-de="Schüler" data-it="studente" class="bio-highlight"></span>
-        <span data-en="with a passion for" data-de="mit einer Leidenschaft für" data-it="liceale, con una passione per il"></span>
+        <span data-en="Hi! I'm a uni" data-de="Hi! Ich bin ein Uni" data-it="Hey! Sono uno"></span>
+        <span data-en="student" data-de="Student" data-it="studente" class="bio-highlight"></span>
+        <span data-en="with a passion for" data-de="mit einer Leidenschaft für" data-it="universitario, con una passione per lo"></span>
         <span data-en="software development" data-de="Softwareentwicklung" data-it="sviluppo di software" class="bio-highlight"></span>.
+        <br>
+        <span data-en="Welcome to my portfolio, hope you like it here." data-de="Willkommen in meinem Portfolio, es gibt Apfelsaft, wenn du magst." data-it="Benvenuto nel mio portfolio, fai come se fossi a casa tua."></span>
       </p>
     </div>
     <div id="works_container" class="reveal">
       <h2 class="page_title" data-en="My Works." data-de="Meine Projekte." data-it="I miei Progetti."></h2>
       <div id="projects">
-        <div class="project" id="scuolasync">
+        <button class="project" id="scuolasync" popovertarget="scuolasync_popover">
           <div class="project_title">
             <svg class="project_title_image" viewBox="0 0 1800 550" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
               <text xml:space="preserve" style="font-size:367.901px;letter-spacing:-11.037px;fill:#000000;stroke-width:1.8395" x="0" y="372">
@@ -93,7 +94,10 @@
               </svg>
             </div>
           </div>
-        </div>
+          <div id="scuolasync_popover" class="popover" popover>
+            test
+          </div>
+        </button>
         <div class="project" id="ecosol">
           <div class="project_title">
             <img class="project_title_image" src="assets/ecosol.svg" alt="Ecosol">
@@ -111,10 +115,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <p>Section under construction.</p>
-      <p>Projects like <a href="https://github.com/nkoexe/sostituzioni" target="_blank" class="pointer_receiver">ScuolaSync</a> and <a href="https://ecosol-fidenza.it" target="_blank" class="pointer_receiver">Ecosol Fidenza</a> will go here.</p>
-      <p>In the meantime, you can check out <a href="https://github.com/nkoexe/" target="_blank" class="pointer_receiver">github.com/nkoexe</a>.</p> -->
     </div>
     <div id="contact_container" class="reveal">
       <h2 class="page_title" data-en="My corner of the Internet." data-de="Finde mich hier." data-it="Il mio angolo del web."></h2>
