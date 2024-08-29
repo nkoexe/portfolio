@@ -217,7 +217,7 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 #title_container .title_letter {
-    transition: font-weight 0.4s letter-spacing 0.4s;
+    transition: font-weight 0.4s, letter-spacing 0.4s;
     animation: title_initial_animation 2s linear;
 }
 
