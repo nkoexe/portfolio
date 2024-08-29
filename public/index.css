@@ -502,9 +502,26 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
     margin: 10px 0;
 }
 
-#colors_info_container {
+#design_info_container {
     grid-area: 1 / 2 / 3 / 3;
 }
+
+#font_link {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transform: skew(-4deg);
+    transition: color .3s, font-weight .3s, letter-spacing .3s, word-spacing .3s, transform .3s;
+}
+
+#font_link:hover {
+    font-weight: 700;
+    letter-spacing: 0;
+    word-spacing: -0.05em;
+    transform: skew(-10deg);
+}
+
 
 .color_container {
     display: flex;
