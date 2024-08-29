@@ -723,7 +723,7 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    #colors_info_container {
+    #design_info_container {
         grid-area: auto;
     }
 }
@@ -736,6 +736,20 @@ footer {
 
     #pointer:not(.hovering) {
         opacity: 0;
+    }
+
+    #contacts .contact_row {
+        flex-direction: column;
+    }
+
+    #contacts .contact_row .contact:not(.wide) {
+        width: 200px;
+        margin-left: 15%;
+    }
+
+    #contacts .contact_row .contact:not(.wide):nth-child(odd) {
+        margin-left: auto;
+        margin-right: 15%;
     }
 }
 
