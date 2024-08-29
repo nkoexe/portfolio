@@ -140,7 +140,11 @@ function setLang(language) {
     })
     setMenuHighlight(current_menu_index)
 }
-setLang("en");
+let init_lang = (navigator.language || navigator.userLanguage).split('-')[0];
+if (!('en', 'de', 'it').includes(init_lang)) {
+    init_lang = 'en';
+}
+setLang(init_lang);
 
 document.querySelector("#button_language_en").onclick = () => { setLang('en') }
 document.querySelector("#button_language_de").onclick = () => { setLang('de') }
