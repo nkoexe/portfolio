@@ -267,7 +267,7 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 #bio_container {
-    padding-bottom: 30%;
+    padding-bottom: 40vh;
 }
 
 #bio {
@@ -294,8 +294,8 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 #works_container {
-    padding-top: 5%;
-    padding-bottom: 25%;
+    padding-top: 5vh;
+    padding-bottom: 40vh;
 }
 
 #projects {
@@ -415,13 +415,13 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
 }
 
 #contact_container {
-    padding-top: 5%;
-    padding-bottom: 25%;
+    padding-top: 5vh;
+    padding-bottom: 40vh;
 }
 
 #contacts {
     margin: auto;
-    padding-top: 5%;
+    padding-top: 5vh;
     max-width: 600px;
 }
 
@@ -460,8 +460,8 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
 }
 
 #info_container {
-    padding-top: 5%;
-    padding-bottom: 10%;
+    padding-top: 5vh;
+    padding-bottom: 15vh;
 }
 
 #infos {
@@ -500,6 +500,16 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
 
 .info_content p {
     margin: 10px 0;
+}
+
+#repo_link span {
+    transition: none;
+}
+
+@media (max-width: 500px) {
+    #repo_link span {
+        display: none;
+    }
 }
 
 #design_info_container {
