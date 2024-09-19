@@ -1,4 +1,6 @@
 const theme_icon = document.querySelector("#change_theme_button");
+const dark_mode_icon = document.querySelector("#icon_dark_mode");
+const light_mode_icon = document.querySelector("#icon_light_mode");
 const title_letters = document.querySelectorAll(".title_letter");
 
 let current_menu_index = 0;
@@ -20,29 +22,38 @@ let pointerHovering = false;
 let hoveredElement = null;
 
 
+// skip header and footer animations
+if (document.documentElement.scrollTop > 0) {
+    document.querySelector("header").style.animationDelay = "0.2s";
+    document.querySelector("footer").style.animationDelay = "0.2s";
+}
+
+
 // RANDOMIZE COLORS
 const randomize_colors_button = document.querySelector("#randomize_colors_button")
 const randomize_colors_icon = document.querySelector("#randomize_colors_icon")
 
 function randomizeColors() {
-    let bg_luminosity, text_luminosity, icon_luminosity
+    let bg_luminosity, bg_saturation, text_luminosity, icon_luminosity
     if (document.body.dataset.theme == "dark") {
         bg_luminosity = 10
+        bg_saturation = 3
         text_luminosity = 90
         icon_luminosity = 80
     } else {
         bg_luminosity = 95
+        bg_saturation = 40
         text_luminosity = 10
         icon_luminosity = 40
     }
 
-    const bg_saturation = Math.round(Math.random() * 20) + 5
+    bg_saturation = Math.round(Math.random() * bg_saturation) + 5
     const text_saturation = Math.round(Math.random() * 30) + 20
     const icon_saturation = Math.round(Math.random() * 60) + 40
 
     const bg_hue = Math.round(Math.random() * 360)
     const text_hue = bg_hue + Math.round(Math.random() * 80) - 40
-    const icon_hue = bg_hue + Math.round(Math.random() * 100) - 50
+    const icon_hue = bg_hue + Math.round(Math.random() * 150) - 75
 
     let bg = hslToHex(bg_hue, bg_saturation, bg_luminosity)
     let text = hslToHex(text_hue, text_saturation, text_luminosity)
@@ -84,13 +95,15 @@ function setTheme(dark) {
     if (dark) {
         document.body.dataset.theme = "dark";
         setTimeout(() => {
-            theme_icon.innerHTML = "dark_mode";
+            dark_mode_icon.style.display = "";
+            light_mode_icon.style.display = "none";
         }, 400);
     }
     else {
         document.body.dataset.theme = "light";
         setTimeout(() => {
-            theme_icon.innerHTML = "light_mode"
+            dark_mode_icon.style.display = "none";
+            light_mode_icon.style.display = "";
         }, 400);
     }
 
@@ -127,7 +140,11 @@ function setLang(language) {
     })
     setMenuHighlight(current_menu_index)
 }
-setLang("en");
+let init_lang = (navigator.language || navigator.userLanguage).split('-')[0];
+if (!('en', 'de', 'it').includes(init_lang)) {
+    init_lang = 'en';
+}
+setLang(init_lang);
 
 document.querySelector("#button_language_en").onclick = () => { setLang('en') }
 document.querySelector("#button_language_de").onclick = () => { setLang('de') }
