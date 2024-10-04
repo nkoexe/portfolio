@@ -286,3 +286,9 @@ reveal_observer.observe(document.querySelector("#bio"));
 reveal_observer.observe(document.querySelector("#works_container"));
 reveal_observer.observe(document.querySelector("#contact_container"));
 reveal_observer.observe(document.querySelector("#info_container"));
+
+document.querySelectorAll(".project").forEach(project => {
+    project.addEventListener("click", () => {
+        project.classList.toggle("expanded")
+    })
+})

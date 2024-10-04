@@ -311,7 +311,8 @@ body[data-theme="dark"] #change_theme_button {
 .project {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: auto;
+    max-height: 200px;
     border: 2px solid var(--text-color);
     border-radius: 30px;
     font-size: var(--font-size-paragraph);
@@ -319,8 +320,14 @@ body[data-theme="dark"] #change_theme_button {
     overflow: hidden;
     display: grid;
     grid-template-columns: 35% 1fr;
+    grid-template-rows: 200px auto;
     align-items: center;
     gap: 10px;
+    transition: max-height .5s cubic-bezier(.2, 0, 0, 1), box-shadow .5s cubic-bezier(.2, 0, 0, 1);
+}
+
+.project.expanded {
+    max-height: 500px;
 }
 
 .project:hover {
@@ -380,8 +387,6 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
 }
 
 .project_readmore {
-    visibility: hidden;
-    /* temp finchè non si crea il popover */
     position: absolute;
     bottom: 0;
     right: 0;
@@ -400,6 +405,10 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
     padding-right: 20px;
 }
 
+.project.expanded .project_readmore {
+    color: transparent;
+}
+
 .project_readmore_arrow_container {
     width: 30px;
     display: flex;
@@ -407,12 +416,23 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
 
 .project_readmore_arrow {
     fill: var(--text-color);
-    transition: margin .3s;
+    transition: margin .3s, rotate .3s;
 }
 
 .project_readmore:hover .project_readmore_arrow {
-    margin-left: 5px
+    margin-left: 5px;
+    rotate: 90deg;
 }
+
+.project.expanded .project_readmore_arrow {
+    rotate: 180deg;
+}
+
+.project.expanded .project_readmore:hover .project_readmore_arrow {
+    rotate: 270deg;
+}
+
+.project_more {}
 
 #contact_container {
     padding-top: 5vh;
@@ -783,4 +803,9 @@ footer {
 
 #title_page:current {
     background-color: red !important;
+}
+
+::view-transition-old(project),
+::view-transition-new(project) {
+    animation-duration: 1s;
 }
