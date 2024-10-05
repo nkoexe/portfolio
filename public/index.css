@@ -474,7 +474,6 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
     padding: 0;
 }
 
-
 .project_description_more,
 .project_links {
     transition: opacity .3s, translate .3s;
