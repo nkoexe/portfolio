@@ -133,12 +133,21 @@ email.href = "mailto:" + email.innerHTML
 
 
 // LANGUAGE
-function setLang(language) {
+function _setLang(language) {
     const tranlate_elements = document.querySelectorAll(`[data-${language}]`);
     tranlate_elements.forEach(element => {
         element.innerHTML = element.getAttribute(`data-${language}`);
     })
     setMenuHighlight(current_menu_index)
+}
+function setLang(language) {
+    if (document.startViewTransition) {
+        document.startViewTransition(function () {
+            _setLang(language)
+        })
+    } else {
+        _setLang(language)
+    }
 }
 let init_lang = (navigator.language || navigator.userLanguage).split('-')[0];
 if (!('en', 'de', 'it').includes(init_lang)) {
