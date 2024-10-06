@@ -490,6 +490,25 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
     translate: 0 10px;
 }
 
+@media (max-width:900px) {
+    .project {
+        grid-template-columns: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .project_title_image {
+        margin: auto !important;
+    }
+
+    .project.expanded {
+        max-height: 1200px;
+    }
+
+    .project_links {
+        grid-row: 4;
+    }
+}
 
 #contact_container {
     padding-top: 5vh;
@@ -856,13 +875,4 @@ footer {
     .reveal {
         opacity: 1;
     }
-}
-
-#title_page:current {
-    background-color: red !important;
-}
-
-::view-transition-old(project),
-::view-transition-new(project) {
-    animation-duration: 1s;
 }
