@@ -10,7 +10,6 @@
   <meta name="author" content="Niccolò Ragazzi">
   <meta name="keywords" content="Niccolò Ragazzi, Portfolio, Personal Portfolio, Personal Website, Student Portfolio">
   <link rel="stylesheet" href="index.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -74,17 +73,9 @@
       <div id="projects">
         <div class="project" id="scuolasync" popovertarget="scuolasync_popover">
           <div class="project_title">
-            <svg class="project_title_image" viewBox="0 0 1800 550" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-              <text xml:space="preserve" style="font-size:367.901px;letter-spacing:-11.037px;fill:#000000;stroke-width:1.8395" x="0" y="372">
-                <tspan id="scuola" x="0" y="372" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Gabarito;-inkscape-font-specification:Gabarito;stroke-width:1.8395">Scuola</tspan>
-              </text>
-              <text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:367.901px;font-family:Gabarito;-inkscape-font-specification:'Gabarito Medium';letter-spacing:-11.037px;fill:#000000;stroke-width:1.8395" x="1243" y="372">
-                <tspan id="ync" x="1243" y="372" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Gabarito;-inkscape-font-specification:Gabarito;stroke-width:1.8395">ync</tspan>
-              </text>
-              <g style="fill:none;stroke:#c00f19;stroke-width:12.1517;stroke-dasharray:none;stroke-opacity:1" transform="matrix(3.7844432,0,0,3.7844432,924,0)">
-                <path d="M 85.5,7 C 85.5,7 27,31.5 26.5,53 26,74.5 77,47.5 77,68 77,88.5 25.6667,118.833 4,130.5" style="stroke:#c00f19;stroke-width:12.1517;stroke-dasharray:none;stroke-opacity:1" />
-              </g>
-            </svg>
+            <object type="image/svg+xml" data="assets/scuolasync.svg" onload="this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+              ScuolaSync
+            </object>
           </div>
           <div class="project_description">
             <p>Sistema per la gestione di sostituzioni, eventi e notize all'interno di un contesto scolastico.</p>
@@ -226,7 +217,110 @@
   </footer>
   <div id="pointer"></div>
 
-  <script src="index.js" async></script>
+  <script>
+    const theme_icon = document.querySelector("#change_theme_button");
+    const dark_mode_icon = document.querySelector("#icon_dark_mode");
+    const light_mode_icon = document.querySelector("#icon_light_mode");
+    const randomize_colors_button = document.querySelector("#randomize_colors_button")
+    const randomize_colors_icon = document.querySelector("#randomize_colors_icon")
+
+    function randomizeColors() {
+      let bg_luminosity, bg_saturation, text_luminosity, icon_luminosity
+      if (document.body.dataset.theme == "dark") {
+        bg_luminosity = 8
+        bg_saturation = 3
+        text_luminosity = 90
+        icon_luminosity = 80
+      } else {
+        bg_luminosity = 95
+        bg_saturation = 40
+        text_luminosity = 10
+        icon_luminosity = 40
+      }
+
+      bg_saturation = Math.round(Math.random() * bg_saturation) + 5
+      const text_saturation = Math.round(Math.random() * 30) + 20
+      const icon_saturation = Math.round(Math.random() * 60) + 40
+
+      const bg_hue = Math.round(Math.random() * 360)
+      const text_hue = bg_hue + Math.round(Math.random() * 80) - 40
+      const icon_hue = bg_hue + Math.round(Math.random() * 150) - 75
+
+      let bg = hslToHex(bg_hue, bg_saturation, bg_luminosity)
+      let text = hslToHex(text_hue, text_saturation, text_luminosity)
+      let icon = hslToHex(icon_hue, icon_saturation, icon_luminosity)
+
+      document.body.style.setProperty("--background-color", bg)
+      document.body.style.setProperty("--text-color", text)
+      document.body.style.setProperty("--icon-color", icon)
+
+      randomize_colors_icon.style.animation = 'none';
+      randomize_colors_icon.offsetHeight; /* trigger reflow and restart animation */
+      randomize_colors_icon.style.animation = null;
+
+      updateColorTiles()
+    }
+
+    function updateColorTiles() {
+      const style = getComputedStyle(document.body);
+      document.querySelector("#color_tile_bg_code").innerHTML = style.getPropertyValue("--background-color");
+      document.querySelector("#color_tile_text_code").innerHTML = style.getPropertyValue("--text-color");
+      document.querySelector("#color_tile_accent_code").innerHTML = style.getPropertyValue("--icon-color");
+    }
+
+    function hslToHex(h, s, l) {
+      l /= 100;
+      const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - (s * Math.min(l, 1 - l) / 100) * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+      };
+      return `#${f(0)}${f(8)}${f(4)}`;
+    }
+
+    randomize_colors_button.onclick = randomizeColors
+
+
+    // LIGHT&DARK THEME
+    function setTheme(dark) {
+      if (dark) {
+        document.body.dataset.theme = "dark";
+        setTimeout(() => {
+          dark_mode_icon.style.display = "";
+          light_mode_icon.style.display = "none";
+        }, 400);
+      }
+      else {
+        document.body.dataset.theme = "light";
+        setTimeout(() => {
+          dark_mode_icon.style.display = "none";
+          light_mode_icon.style.display = "";
+        }, 400);
+      }
+
+      randomizeColors()
+    }
+
+    if (window.matchMedia) {
+      // watch for changes
+      window.matchMedia('(prefers-color-scheme: dark)').onchange = ({ matches }) => {
+        setTheme(matches);
+      }
+      // initial theme check
+      setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    } else {
+      // fallback to light theme
+      setTheme(false);
+    }
+
+    // header button for changing theme
+    theme_icon.onclick = () => {
+      // switch theme
+      setTheme(document.body.dataset.theme == "light");
+    }
+
+  </script>
+  <script src="index.js" defer></script>
 </body>
 
 </html>

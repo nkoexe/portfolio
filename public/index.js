@@ -1,6 +1,3 @@
-const theme_icon = document.querySelector("#change_theme_button");
-const dark_mode_icon = document.querySelector("#icon_dark_mode");
-const light_mode_icon = document.querySelector("#icon_light_mode");
 const title_letters = document.querySelectorAll(".title_letter");
 
 let current_menu_index = 0;
@@ -22,107 +19,11 @@ let pointerHovering = false;
 let hoveredElement = null;
 
 
+
 // skip header and footer animations
 if (document.documentElement.scrollTop > 0) {
     document.querySelector("header").style.animationDelay = "0.2s";
     document.querySelector("footer").style.animationDelay = "0.2s";
-}
-
-
-// RANDOMIZE COLORS
-const randomize_colors_button = document.querySelector("#randomize_colors_button")
-const randomize_colors_icon = document.querySelector("#randomize_colors_icon")
-
-function randomizeColors() {
-    let bg_luminosity, bg_saturation, text_luminosity, icon_luminosity
-    if (document.body.dataset.theme == "dark") {
-        bg_luminosity = 10
-        bg_saturation = 3
-        text_luminosity = 90
-        icon_luminosity = 80
-    } else {
-        bg_luminosity = 95
-        bg_saturation = 40
-        text_luminosity = 10
-        icon_luminosity = 40
-    }
-
-    bg_saturation = Math.round(Math.random() * bg_saturation) + 5
-    const text_saturation = Math.round(Math.random() * 30) + 20
-    const icon_saturation = Math.round(Math.random() * 60) + 40
-
-    const bg_hue = Math.round(Math.random() * 360)
-    const text_hue = bg_hue + Math.round(Math.random() * 80) - 40
-    const icon_hue = bg_hue + Math.round(Math.random() * 150) - 75
-
-    let bg = hslToHex(bg_hue, bg_saturation, bg_luminosity)
-    let text = hslToHex(text_hue, text_saturation, text_luminosity)
-    let icon = hslToHex(icon_hue, icon_saturation, icon_luminosity)
-
-    document.body.style.setProperty("--background-color", bg)
-    document.body.style.setProperty("--text-color", text)
-    document.body.style.setProperty("--icon-color", icon)
-
-    randomize_colors_icon.style.animation = 'none';
-    randomize_colors_icon.offsetHeight; /* trigger reflow and restart animation */
-    randomize_colors_icon.style.animation = null;
-
-    updateColorTiles()
-}
-
-function updateColorTiles() {
-    const style = getComputedStyle(document.body);
-    document.querySelector("#color_tile_bg_code").innerHTML = style.getPropertyValue("--background-color");
-    document.querySelector("#color_tile_text_code").innerHTML = style.getPropertyValue("--text-color");
-    document.querySelector("#color_tile_accent_code").innerHTML = style.getPropertyValue("--icon-color");
-}
-
-function hslToHex(h, s, l) {
-    l /= 100;
-    const f = n => {
-        const k = (n + h / 30) % 12;
-        const color = l - (s * Math.min(l, 1 - l) / 100) * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-        return Math.round(255 * color).toString(16).padStart(2, '0');
-    };
-    return `#${f(0)}${f(8)}${f(4)}`;
-}
-
-randomize_colors_button.onclick = randomizeColors
-
-
-// LIGHT&DARK THEME
-function setTheme(dark) {
-    if (dark) {
-        document.body.dataset.theme = "dark";
-        setTimeout(() => {
-            dark_mode_icon.style.display = "";
-            light_mode_icon.style.display = "none";
-        }, 400);
-    }
-    else {
-        document.body.dataset.theme = "light";
-        setTimeout(() => {
-            dark_mode_icon.style.display = "none";
-            light_mode_icon.style.display = "";
-        }, 400);
-    }
-
-    randomizeColors()
-}
-
-if (window.matchMedia) {
-    // watch for changes
-    window.matchMedia('(prefers-color-scheme: dark)').onchange = ({ matches }) => {
-        setTheme(matches);
-    }
-    // initial theme check
-    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
-}
-
-// header button for changing theme
-theme_icon.onclick = () => {
-    // switch theme
-    setTheme(document.body.dataset.theme == "light");
 }
 
 

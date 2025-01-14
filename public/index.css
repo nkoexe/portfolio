@@ -365,8 +365,7 @@ body[data-theme="dark"] #change_theme_button {
     user-select: none;
 }
 
-#scuola,
-#ync {
+#scuolasync_txt {
     fill: var(--text-color);
     transition: fill 1s;
 }
