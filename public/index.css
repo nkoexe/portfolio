@@ -200,7 +200,7 @@ body[data-theme="dark"] #change_theme_button {
 #title {
     font-size: 3em;
     font-weight: 100;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.3rem;
     word-spacing: 0.5rem;
     margin: auto;
     position: relative;
@@ -217,13 +217,14 @@ body[data-theme="dark"] #change_theme_button {
 }
 
 #title_container .title_letter {
-    transition: font-weight 0.4s, letter-spacing 0.4s;
+    transition: font-weight .6s, letter-spacing .6s;
     animation: title_initial_animation 2s linear;
 }
 
 #title_container:hover .title_letter {
     font-weight: 600;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0rem;
+    transition-duration: .4s;
 }
 
 #title_background {
@@ -277,7 +278,7 @@ body[data-theme="dark"] #change_theme_button {
     text-align: left;
     color: var(--text-color);
     font-size: var(--font-size-paragraph);
-    font-weight: 350;
+    font-weight: 400;
     word-spacing: 0.2em;
 }
 
@@ -376,7 +377,6 @@ body[data-theme="dark"] #change_theme_button {
 
 body[data-theme="dark"] .project#ecosol .project_title_image {
     filter: brightness(120%) saturate(0.8);
-
 }
 
 .project_description {
@@ -436,6 +436,7 @@ body[data-theme="dark"] .project#ecosol .project_title_image {
     height: 100%;
     display: flex;
     flex-direction: column;
+    gap: 20px;
     padding: 10px;
     padding-left: 30px;
 }
