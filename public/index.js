@@ -3,6 +3,7 @@ const title_letters = document.querySelectorAll(".title_letter");
 let current_menu_index = 0;
 const navigation_container = document.querySelector("#navigation_container");
 const navigation_buttons = document.querySelectorAll(".navigation_button");
+const menu = document.querySelector("#menu");
 const squiggle = document.querySelector("#navigation_buttons_underline_window");
 const squiggle_svg = document.querySelector("#underline");
 const pointer = document.querySelector("#pointer");
@@ -56,6 +57,11 @@ setLang(init_lang);
 document.querySelector("#button_language_en").onclick = () => { setLang('en') }
 document.querySelector("#button_language_de").onclick = () => { setLang('de') }
 document.querySelector("#button_language_it").onclick = () => { setLang('it') }
+
+// MENU
+document.querySelector("#menu_button").onclick = () => {
+  menu.classList.toggle("open");
+}
 
 // TITLE ANIMATION ON HOVER
 for (let i = 0; i < title_letters.length; i++) {
@@ -150,22 +156,27 @@ window.onscroll = (e) => {
 navigation_buttons[0].onclick = () => {
   document.documentElement.scroll({ top: 0, behavior: "smooth" })
   setMenuHighlight(0)
+  menu.classList.remove("open")
 }
 navigation_buttons[1].onclick = () => {
   document.querySelector("#bio").scrollIntoView({ behavior: "smooth", block: "center" })
   setMenuHighlight(1)
+  menu.classList.remove("open")
 }
 navigation_buttons[2].onclick = () => {
   document.querySelector("#works_container").scrollIntoView({ behavior: "smooth" })
   setMenuHighlight(2)
+  menu.classList.remove("open")
 }
 navigation_buttons[3].onclick = () => {
   document.querySelector("#contact_container").scrollIntoView({ behavior: "smooth" })
   setMenuHighlight(3)
+  menu.classList.remove("open")
 }
 navigation_buttons[4].onclick = () => {
   document.querySelector("#info_container").scrollIntoView({ behavior: "smooth" })
   setMenuHighlight(4)
+  menu.classList.remove("open")
 }
 
 // REVEAL EFFECTS

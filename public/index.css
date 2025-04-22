@@ -121,7 +121,7 @@ header {
     width: 100%;
     display: flex;
     color: var(--icon-color);
-    z-index: 5;
+    z-index: 10;
     pointer-events: none;
     user-select: none;
     transform: translateY(-100%);
@@ -168,14 +168,42 @@ body[data-theme="dark"] #change_theme_button {
     rotate: 360deg;
 }
 
-#change_theme_button>svg {
+#change_theme_button>svg,
+#menu_button svg {
     vertical-align: bottom;
     fill: var(--icon-color);
     transition: fill 0.5s;
 }
 
-#change_theme_button:hover>svg {
+#change_theme_button:hover>svg,
+#menu_button:hover svg {
     fill: var(--background-color);
+}
+
+#menu_button {
+    display: flex;
+}
+
+#menu_button_svgs {
+    position: relative;
+    width: 34px;
+    height: 24px;
+    margin: auto;
+    rotate: -45deg;
+}
+
+#menu_button_svgs>svg {
+    position: absolute;
+}
+
+#menu_button_svgs>:nth-child(1) {
+    top: 0;
+    left: 0;
+}
+
+#menu_button_svgs>:nth-child(2) {
+    top: 0;
+    left: 10px;
 }
 
 #main_container {
@@ -815,6 +843,123 @@ footer {
     transition: stroke 1s;
 }
 
+#menu {
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    transition: left 1s cubic-bezier(.3, 0, 0, 1);
+}
+
+#menu.open {
+    left: 0;
+    transition: left 1s cubic-bezier(.2, 0, 0, 1);
+}
+
+#gradient_background {
+    --step0: 1%;
+    --step1: 4%;
+    --step2: 10%;
+    --step3: 18%;
+    --step4: 25%;
+    --step5: 40%;
+    --step6: 60%;
+    --step7: 80%;
+    --step8: 90%;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: auto 0 0 0;
+    pointer-events: none;
+}
+
+#gradient_background>div,
+#gradient_background::before,
+#gradient_background::after {
+    position: absolute;
+    inset: 0;
+}
+
+#gradient_background>div:nth-child(1) {
+    z-index: 1;
+    backdrop-filter: blur(0.5px);
+    mask: linear-gradient(to right,
+            rgba(0, 0, 0, 0) var(--step0),
+            rgba(0, 0, 0, 1) var(--step1),
+            rgba(0, 0, 0, 1) var(--step2),
+            rgba(0, 0, 0, 0) var(--step3));
+}
+
+#gradient_background>div:nth-child(2) {
+    z-index: 2;
+    backdrop-filter: blur(1px);
+    mask: linear-gradient(to right,
+            rgba(0, 0, 0, 0) var(--step1),
+            rgba(0, 0, 0, 1) var(--step2),
+            rgba(0, 0, 0, 1) var(--step3),
+            rgba(0, 0, 0, 0) var(--step4));
+}
+
+#gradient_background>div:nth-child(3) {
+    z-index: 3;
+    backdrop-filter: blur(2px);
+    mask: linear-gradient(to right,
+            rgba(0, 0, 0, 0) var(--step2),
+            rgba(0, 0, 0, 1) var(--step3),
+            rgba(0, 0, 0, 1) var(--step4),
+            rgba(0, 0, 0, 0) var(--step5));
+}
+
+#gradient_background>div:nth-child(4) {
+    z-index: 4;
+    backdrop-filter: blur(4px);
+    mask: linear-gradient(to right,
+            rgba(0, 0, 0, 0) var(--step3),
+            rgba(0, 0, 0, 1) var(--step4),
+            rgba(0, 0, 0, 1) var(--step5),
+            rgba(0, 0, 0, 0) var(--step6));
+}
+
+#gradient_background>div:nth-child(5) {
+    z-index: 5;
+    backdrop-filter: blur(8px);
+    mask: linear-gradient(to right,
+            rgba(0, 0, 0, 0) var(--step4),
+            rgba(0, 0, 0, 1) var(--step5),
+            rgba(0, 0, 0, 1) var(--step6),
+            rgba(0, 0, 0, 0) var(--step7));
+}
+
+#gradient_background>div:nth-child(6) {
+    z-index: 6;
+    backdrop-filter: blur(16px);
+    mask: linear-gradient(to right,
+            rgba(0, 0, 0, 0) var(--step5),
+            rgba(0, 0, 0, 1) var(--step6),
+            rgba(0, 0, 0, 1) var(--step7),
+            rgba(0, 0, 0, 0) var(--step8));
+}
+
+#gradient_background>div:nth-child(7) {
+    z-index: 7;
+    backdrop-filter: blur(32px);
+    mask: linear-gradient(to right,
+            rgba(0, 0, 0, 0) var(--step6),
+            rgba(0, 0, 0, 1) var(--step7),
+            rgba(0, 0, 0, 1) var(--step8));
+}
+
+#gradient_background>div:nth-child(8) {
+    z-index: 8;
+    backdrop-filter: blur(64px);
+    mask: linear-gradient(to right,
+            rgba(0, 0, 0, 0) var(--step7),
+            rgba(0, 0, 0, 1) var(--step8));
+}
+
 .reveal {
     opacity: 0;
     transition: opacity 0.5s, all 0.5s;
@@ -857,7 +1002,55 @@ footer {
         margin-left: auto;
         margin-right: 15%;
     }
+
+    footer:has(+ :not(#menu.open)) {
+        display: none;
+        translate: 150% 0;
+        opacity: 0;
+        filter: blur(100px);
+    }
+
+    footer {
+        border-top: none;
+        backdrop-filter: none;
+        bottom: 80%;
+        translate: 0 0;
+        opacity: 1;
+        filter: blur(0px);
+        animation: none;
+        transition: translate 0.7s, opacity 1s, filter 1s, display 0s 1s;
+        transition-behavior: allow-discrete;
+
+        @starting-style {
+            display: flex;
+            translate: 150% 0;
+            filter: blur(100px);
+            opacity: 0;
+        }
+    }
+
+    #navigation_container {
+        margin-right: 5%;
+    }
+
+    #navigation_buttons_container {
+        flex-direction: column;
+    }
+
+    .navigation_button_container {
+        flex-direction: row-reverse;
+    }
+
+    .navigation_button {
+        padding: 10px 30px;
+        font-size: 3em;
+    }
+
+    #navigation_buttons_underline_container {
+        display: none;
+    }
 }
+
 
 @media (prefers-reduced-motion) {
     * {
