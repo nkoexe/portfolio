@@ -172,12 +172,16 @@ body[data-theme="dark"] #change_theme_button {
 #menu_button svg {
     vertical-align: bottom;
     fill: var(--icon-color);
-    transition: fill 0.5s;
+    transition: fill 0.5s, scale .3s;
 }
 
 #change_theme_button:hover>svg,
 #menu_button:hover svg {
     fill: var(--background-color);
+}
+
+#menu_button_container {
+    display: none;
 }
 
 #menu_button {
@@ -985,8 +989,14 @@ footer {
         cursor: unset;
     }
 
-    #pointer:not(.hovering) {
-        opacity: 0;
+    .pointer_receiver:hover,
+    .pointer_receiver:hover * {
+        color: var(--icon-color) !important;
+        fill: var(--icon-color) !important;
+    }
+
+    #pointer {
+        display: none;
     }
 
     #contacts .contact_row {
@@ -1001,6 +1011,36 @@ footer {
     #contacts .contact_row .contact:not(.wide):nth-child(odd) {
         margin-left: auto;
         margin-right: 15%;
+    }
+
+    #language_buttons_container,
+    #change_theme_container {
+        filter: blur(0px);
+        opacity: 1;
+        transition: all .8s .3s allow-discrete;
+
+        @starting-style {
+            display: flex;
+            filter: blur(20px);
+            opacity: 0;
+        }
+    }
+
+    :has(#menu:not(.open)) #language_buttons_container,
+    :has(#menu:not(.open)) #change_theme_container {
+        display: none;
+        filter: blur(30px);
+        opacity: 0;
+        transition-duration: 1s;
+        transition-delay: 0s;
+    }
+
+    #menu_button_container {
+        display: block;
+    }
+
+    :has(#menu.open) #menu_button_svgs>:first-child {
+        scale: -1;
     }
 
     footer:has(+ :not(#menu.open)) {
