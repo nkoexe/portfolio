@@ -15,5 +15,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: njcodev
-          directory: public
+          directory: /
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
