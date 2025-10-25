@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="index.css">
+  <title>Niccolò Ragazzi</title>
+</head>
+
+<body>
+  <div id="map-container">
+    <div id="map">
+      <div id="backdrop" class="right">
+        <svg id="backdrop-text" viewBox="-100 0 1900 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M250.999 0H270.999C270.999 0 270.999 595 270.999 637C270.999 679 250.999 679 250.999 679V0Z" />
+          <path d="M549.256 473C579.255 473 613 473 628.256 473C625 478 625 506 628.256 511C635.012 511 581.256 511 549.256 511C517.256 511 519.256 473 549.256 473Z" />
+          <path d="M1031 511C1001 511 995 511 995 511L995 473C995 473 999 473 1031 473C1063 473 1061 511 1031 511Z" />
+          <circle cx="790" cy="492" r="19" />
+          <path d="M1324 382H1399L1404.5 411H1324V382Z" />
+          <path d="M1324 582H1437.5L1443 611H1324V582Z" />
+          <path d="M130.85 96C130.85 96 91.8496 4.21991e-06 63.2996 1.72399e-06C34.7496 -7.71932e-07 130.85 7.62939e-06 130.85 7.62939e-06L130.85 96Z" />
+          <path d="M429.85 96C429.85 96 468.93 3.41652e-06 497.539 5.91758e-06C526.148 8.41864e-06 429.85 0 429.85 0L429.85 96Z" />
+          <path d="M678 904C678 904 717.08 1000 745.689 1000C774.298 1000 678 1000 678 1000L678 904Z" />
+          <path d="M1501 904C1501 904 1540.08 1000 1568.69 1000C1597.3 1000 1501 1000 1501 1000L1501 904Z" />
+          <path d="M901 96C901 96 861.92 3.41652e-06 833.311 5.91758e-06C804.702 8.41864e-06 901 0 901 0L901 96Z" />
+          <path d="M1182 96C1182 96 1142.92 3.41652e-06 1114.31 5.91758e-06C1085.7 8.41864e-06 1182 0 1182 0L1182 96Z" />
+          <path d="M678 96C678 96 717.08 1.18423e-05 745.689 9.34121e-06C774.298 6.84014e-06 678 1.52588e-05 678 1.52588e-05L678 96Z" />
+          <path d="M1716.69 0C1688.08 2.50106e-06 1649 96 1649 96C1648.99 95.9711 1609.92 -2.50069e-06 1581.31 0H1716.69Z" />
+          <path d="M0 904C0 904 39 1000 67.55 1000C96.1 1000 0 1000 0 1000V904Z" />
+          <path d="M901 904C901 904 861.92 1000 833.311 1000C804.702 1000 901 1000 901 1000L901 904Z" />
+          <path d="M430 904C430 904 469.081 1000 497.689 1000H362.311C390.919 1000 430 904 430 904Z" />
+          <path d="M1182 904C1182 904 1142.92 1000 1114.31 1000C1085.7 1000 1182 1000 1182 1000L1182 904Z" />
+          <path d="M1800 904C1800 904 1760.92 1000 1732.31 1000C1703.7 1000 1800 1000 1800 1000L1800 904Z" />
+        </svg>
+      </div>
+
+      <div>
+        <div id="main" class="section-container">
+          <div id="main-content">
+            <h1 id="main-title"><span class="fancy">Hey,</span> I'm Nico.</h1>
+            <p id="controls">
+              <span>use your</span>
+              <svg class="cursor" viewBox="0 0 120 133" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.09572 24.6604C6.70485 11.714 21.3381 3.26545 31.8546 10.9432L102.271 62.3514C113.615 70.6336 108.373 88.5688 94.3535 89.4375L69.9241 90.9513C65.2322 91.242 60.9479 93.7156 58.3501 97.6335L44.8244 118.033C37.0625 129.74 18.909 125.312 17.4086 111.346L8.09572 24.6604Z" />
+              </svg>
+              <span>or</span>
+              <svg viewBox="0 0 467 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M57.4193 47.0941C63.4642 35.8916 79.5358 35.8917 85.5807 47.0941L120.687 112.152C126.439 122.812 118.719 135.75 106.606 135.75H36.3939C24.2808 135.75 16.5608 122.812 22.3131 112.152L57.4193 47.0941Z" />
+                <path d="M196.581 126.906C190.536 138.108 174.464 138.108 168.419 126.906L133.313 61.8482C127.561 51.1881 135.281 38.25 147.394 38.25L217.606 38.25C229.719 38.25 237.439 51.1881 231.687 61.8482L196.581 126.906Z" />
+                <path d="M267.399 100.379C257.766 94.0608 257.766 79.9392 267.399 73.6209L315.975 41.7613C326.615 34.7827 340.75 42.4157 340.75 55.1405L340.75 118.86C340.75 131.584 326.615 139.217 315.975 132.239L267.399 100.379Z" />
+                <path d="M446.813 100.347C456.381 94.0209 456.381 79.9791 446.813 73.6534L398.824 41.925C388.187 34.8924 374 42.5202 374 55.2716L374 118.728C374 131.48 388.187 139.108 398.824 132.075L446.813 100.347Z" />
+              </svg>
+              <span>to navigate.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="top">
+        <div id="pics" class="section-container">
+          <h2 id="pics-title" class="section-title">photography</h2>
+          <p>there will be pics here, promised.</p>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div id="projects" class="section-container">
+          <h2 id="projects-title" class="section-title">projects</h2>
+          <span>check this out!&ThickSpace;</span><a href="https://github.com/nkoexe">github</a>
+        </div>
+      </div>
+
+      <div class="left">
+        <div id="bio" class="section-container">
+          bio!
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const backdrop_svg = document.querySelector("#backdrop-text");
+
+    const svg_elements = backdrop_svg?.querySelectorAll("*");
+    let window_width, window_height, mousemove_threshold, centerX, centerY;
+
+    let update_window_size = () => {
+      window_width = window.innerWidth;
+      window_height = window.innerHeight;
+      centerX = window_width / 2;
+      centerY = window_height / 2;
+      mousemove_threshold = window_height / 7;
+    }
+    update_window_size();
+    document.addEventListener("resize", update_window_size);
+
+
+    svg_elements?.forEach((element) => {
+      let rect = element.getBoundingClientRect();
+      let x_factor = rect.left / window_width;
+      let y_factor = rect.top / window_height;
+      //((Math.random() + 0.5) / 2) 
+      let delay = ((y_factor * y_factor) / 2 + (x_factor * x_factor)) * 1 + (Math.random() / 3);
+
+      if (rect.top < 10) {
+        element.classList.add("top")
+      }
+      if (rect.bottom > window_height - 10) {
+        element.classList.add("bottom")
+      }
+
+      element.classList.add("visible")
+      element.style.transitionDelay = `${delay}s`
+    });
+
+    //////////////////////////////////////
+
+    let currentPosition = { x: 1, y: 1 };
+    const map = document.querySelector("#map");
+    let lastMove = null;
+    let lastMoveTimeout = null;
+    const LAST_MOVE_COOLDOWN = 600;
+
+    let allowedMoves = (position) => {
+      if (position.x == 2) return ["left"];
+      if (position.x == 0) return ["right"];
+      if (position.y == 2) return ["top"];
+      if (position.y == 0) return ["bottom"];
+      return ["right", "left", "top", "bottom"];
+    }
+
+    let move = (direction) => {
+      if (lastMove == direction || !allowedMoves(currentPosition).includes(direction)) return;
+
+      lastMove = direction;
+      if (lastMoveTimeout) clearTimeout(lastMoveTimeout);
+      lastMoveTimeout = setTimeout(() => {
+        lastMove = null;
+      }, LAST_MOVE_COOLDOWN);
+
+      switch (direction) {
+        case "right":
+          currentPosition.x += 1;
+          map.style.left = `-${currentPosition.x * 100}%`;
+          break;
+        case "left":
+          currentPosition.x -= 1;
+          map.style.left = `-${currentPosition.x * 100}%`;
+          break;
+        case "top":
+          currentPosition.y -= 1;
+          map.style.top = `-${currentPosition.y * 100}%`;
+          break;
+        case "bottom":
+          currentPosition.y += 1;
+          map.style.top = `-${currentPosition.y * 100}%`;
+          break;
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "ArrowRight":
+          move("right");
+          break;
+        case "ArrowLeft":
+          move("left");
+          break;
+        case "ArrowUp":
+          move("top");
+          break;
+        case "ArrowDown":
+          move("bottom");
+          break;
+      }
+    });
+
+    document.addEventListener("wheel", (e) => {
+      let deltaX = e.deltaX;
+      let deltaY = e.deltaY;
+
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 0) {
+          move("right");
+        } else {
+          move("left");
+        }
+      } else {
+        if (deltaY > 0) {
+          move("bottom");
+        } else {
+          move("top");
+        }
+      }
+    });
+
+
+
+    document.addEventListener("mousemove", (e) => {
+      centerX = window.innerWidth / 2;
+      centerY = window.innerHeight / 2;
+
+      let vertical_trigger = Math.abs(e.clientY - centerY) - Math.pow(e.clientX - centerX, 2) / window_width - centerY + mousemove_threshold >= 0
+      let horizontal_trigger = Math.abs(e.clientX - centerX) - Math.pow(e.clientY - centerY, 2) / window_height - centerX + mousemove_threshold * 1.5 >= 0
+
+      if (vertical_trigger) {
+        if (e.clientY < centerY) {
+          move("top");
+        } else {
+          move("bottom");
+        }
+      } else if (horizontal_trigger) {
+        if (e.clientX < centerX) {
+          move("left");
+        } else {
+          move("right");
+        }
+      }
+
+    });
+  </script>
+</body>
+
+</html>
+
+<!-- <script>
+  const pageCache = new Map < string, string> ();
+  const routes = ["/", "/photography", "/projects"];
+
+  async function preloadPages() {
+    const currentPath = window.location.pathname;
+
+    for (const route of routes) {
+      if (route !== currentPath && !pageCache.has(route)) {
+        try {
+          const response = await fetch(route);
+          if (response.ok) {
+            const html = await response.text();
+            pageCache.set(route, html);
+          }
+        } catch (error) {
+          console.error(`Failed to preload ${route}:`, error);
+        }
+      }
+    }
+  }
+
+  async function navigateToPage(url: string) {
+    let html = pageCache.get(url);
+
+    if (!html) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) return;
+        html = await response.text();
+        pageCache.set(url, html);
+      } catch (error) {
+        console.error("Navigation error:", error);
+        return;
+      }
+    }
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const newBody = doc.body.innerHTML;
+
+    document.body.innerHTML = newBody;
+
+    history.pushState(null, "", url);
+
+    initSPALinks();
+
+    window.scrollTo(0, 0);
+  }
+
+  function initSPALinks() {
+    const spaLinks = document.querySelectorAll("a[data-spa-link]");
+
+    spaLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const url = (link as HTMLAnchorElement).getAttribute("href");
+        if (url) {
+          navigateToPage(url);
+        }
+      });
+    });
+  }
+
+  // Handle browser back/forward buttons
+  window.addEventListener("popstate", () => {
+    navigateToPage(window.location.pathname);
+  });
+
+  // Initialize on load
+  document.addEventListener("DOMContentLoaded", () => {
+    initSPALinks();
+    // Preload pages after a short delay
+    setTimeout(preloadPages, 100);
+  });
+
+  // Run immediately if DOM is already loaded
+  if (document.readyState !== "loading") {
+    initSPALinks();
+    setTimeout(preloadPages, 100);
+  }
+</script> -->

@@ -1,0 +1,34 @@
+:root {
+    --font: "Outfit", sans-serif;
+    --background: #ffe0a8;
+    --backdrop: #f8ba5d;
+    --text: #3f1717;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: var(--font);
+    background-color: var(--background);
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
