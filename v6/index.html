@@ -201,8 +201,6 @@
       }
     });
 
-
-
     document.addEventListener("mousemove", (e) => {
       centerX = window.innerWidth / 2;
       centerY = window.innerHeight / 2;
@@ -223,8 +221,53 @@
           move("right");
         }
       }
-
     });
+
+    let touchStartX = null;
+    let touchStartY = null;
+    const SWIPE_THRESHOLD = 50;
+
+    let handleTouchStart = (e) => {
+      const firstTouch = e.touches[0];
+      touchStartX = firstTouch.clientX;
+      touchStartY = firstTouch.clientY;
+    };
+
+    let handleTouchMove = (e) => {
+      if (!touchStartX || !touchStartY) {
+        return;
+      }
+
+      const touchEndX = e.touches[0].clientX;
+      const touchEndY = e.touches[0].clientY;
+
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+
+      if (Math.abs(diffX) < SWIPE_THRESHOLD && Math.abs(diffY) < SWIPE_THRESHOLD) {
+        return;
+      }
+
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0) {
+          move("left");
+        } else {
+          move("right");
+        }
+      } else {
+        if (diffY > 0) {
+          move("top");
+        } else {
+          move("bottom");
+        }
+      }
+
+      touchStartX = null;
+      touchStartY = null;
+    };
+
+    document.addEventListener("touchstart", handleTouchStart, false);
+    document.addEventListener("touchmove", handleTouchMove, false);
   </script>
 </body>
 
