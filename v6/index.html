@@ -42,6 +42,7 @@
 
       <div>
         <div id="main" class="section-container">
+          <!-- <div id="main-dotted-border"></div> -->
           <div id="main-content">
             <h1 id="main-title"><span class="fancy">Hey,</span> I'm Nico.</h1>
             <p id="controls">
@@ -78,6 +79,7 @@
 
       <div class="left">
         <div id="bio" class="section-container">
+          <h2 id="bio-title" class="section-title">biography</h2>
           bio!
         </div>
       </div>
@@ -122,22 +124,28 @@
 
     //////////////////////////////////////
 
-    let currentPosition = { x: 1, y: 1 };
     const map = document.querySelector("#map");
+    const main = document.querySelector("#main");
+    const backdrop = document.querySelector("#backdrop");
+    const pics = document.querySelector("#pics");
+    const projects = document.querySelector("#projects");
+    const bio = document.querySelector("#bio");
+
+    const world = [
+      [null, { el: pics, allowed: ["bottom"] }, null],
+      [{ el: bio, allowed: ["right"] }, { el: main, allowed: ["right", "left", "top", "bottom"] }, { el: backdrop, allowed: ["left"] }],
+      [null, { el: projects, allowed: ["top"] }, null]
+    ];
+
+    let currentPosition = { x: 1, y: 1 };
     let lastMove = null;
     let lastMoveTimeout = null;
     const LAST_MOVE_COOLDOWN = 600;
 
-    let allowedMoves = (position) => {
-      if (position.x == 2) return ["left"];
-      if (position.x == 0) return ["right"];
-      if (position.y == 2) return ["top"];
-      if (position.y == 0) return ["bottom"];
-      return ["right", "left", "top", "bottom"];
-    }
-
-    let move = (direction) => {
-      if (lastMove == direction || !allowedMoves(currentPosition).includes(direction)) return;
+    let move = (direction, debounce) => {
+      debounce = debounce === undefined ? true : debounce;
+      if (debounce && lastMove == direction) return;
+      if (!world[currentPosition.y][currentPosition.x].allowed.includes(direction)) return;
 
       lastMove = direction;
       if (lastMoveTimeout) clearTimeout(lastMoveTimeout);
@@ -163,21 +171,29 @@
           map.style.top = `-${currentPosition.y * 100}%`;
           break;
       }
+
+      main.classList.remove("active");
+      backdrop.classList.remove("active");
+      pics.classList.remove("active");
+      projects.classList.remove("active");
+      bio.classList.remove("active");
+
+      world[currentPosition.y][currentPosition.x].el.classList.add("active");
     }
 
     document.addEventListener("keydown", (e) => {
       switch (e.key) {
         case "ArrowRight":
-          move("right");
+          move("right", false);
           break;
         case "ArrowLeft":
-          move("left");
+          move("left", false);
           break;
         case "ArrowUp":
-          move("top");
+          move("top", false);
           break;
         case "ArrowDown":
-          move("bottom");
+          move("bottom", false);
           break;
       }
     });

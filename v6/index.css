@@ -48,6 +48,10 @@
     height: 100%;
 }
 
+:has(#backdrop.active) #main::after {
+    opacity: 0;
+}
+
 #backdrop-text {
     width: 100%;
     height: 100%;
@@ -78,6 +82,7 @@
 }
 
 .section-title {
+    position: absolute;
     font-family: "DM Serif Display", serif;
     color: var(--backdrop);
     user-select: none;
@@ -87,6 +92,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* #main-dotted-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--backdrop);
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 500'><rect x='0' y='0' width='100' height='300' rx='50' ry='50' fill='black'></rect></svg>");
+    mask-repeat: repeat-y;
+    mask-position: calc(100% - 2vh) 2vh;
+    mask-size: 2vh;
+} */
+
+#main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% + 25vh);
+    height: 100%;
+    transition: opacity .5s ease;
+
+    background-image: radial-gradient(var(--backdrop), transparent 70%);
+    background-size: 50vh 100vh;
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
 }
 
 #main-content {}
@@ -126,7 +159,6 @@
 }
 
 #pics-title {
-    position: absolute;
     bottom: -6vw;
     font-size: 12vw;
     left: 50%;
@@ -136,11 +168,17 @@
 #projects {}
 
 #projects-title {
-    position: absolute;
     font-size: 15vw;
     top: -11vw;
     left: 50%;
     transform: translateX(-50%);
+}
+
+#bio-title {
+    font-size: 20vh;
+    top: 50%;
+    right: -42vh;
+    transform: translateY(-50%) rotate(-90deg);
 }
 
 #bio,
