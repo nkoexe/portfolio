@@ -1,7 +1,8 @@
 :root {
     --font: "Outfit", sans-serif;
-    --background: #ffe0a8;
+    --background: #ffe4c4;
     --backdrop: #f8ba5d;
+    --accent: #f8ba5d;
     --text: #3f1717;
 }
 
@@ -24,6 +25,11 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+button {
+    border: none;
+    font: var(--font);
 }
 
 h1,
