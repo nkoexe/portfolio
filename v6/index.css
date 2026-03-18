@@ -9,7 +9,7 @@
 #map {
     position: absolute;
     top: -100%;
-    left: 0%;
+    left: -100%;
     width: 300%;
     height: 300%;
     transition: all .5s cubic-bezier(.95, 0, 0, 1);
@@ -301,12 +301,33 @@
     font-style: italic;
 }
 
-#bio-contact svg {
+/* #bio-contact svg {
     stroke: var(--text);
     height: .8em;
     margin-top: 4px;
     margin-right: 20px;
+} */
+
+#bio-contact .line {
+    width: 2em;
+    height: 2px;
+    margin-top: 3px;
+    background-color: var(--accent);
 }
+
+#bio-contact a {
+    transition: all .3s;
+}
+
+#bio-contact a:hover {
+    font-weight: 700;
+}
+
+#bio-contact a .at {
+    font-weight: 900;
+    padding: 2px;
+}
+
 
 #bio,
 #projects,
